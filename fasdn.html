@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASDN — Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gov-blue: #00305e;
+            --fasdn-blue: #0077b6; 
+            --gov-red: #d92d20;
+            --gov-black: #000000;
+            --gov-grey: #f3f3f3;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ШАПКА ТА МЕНЮ (СИНХРОНІЗОВАНО З ВАШИМИ ФАЙЛАМИ) --- */
+        header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; border-bottom: 3px solid var(--gov-black);
+            background: #fff; position: sticky; top: 0; z-index: 1000;
+        }
+        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        .menu-btn {
+            background: none; border: 2px solid transparent; cursor: pointer;
+            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
+            padding: 8px 15px; transition: var(--transition);
+        }
+        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
+
+        #menuOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none; padding: 50px 10%;
+            animation: fadeIn 0.3s ease; overflow-y: auto;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
+        .menu-list { list-style: none; }
+        .menu-list li { margin-bottom: 12px; }
+        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; }
+        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+
+        /* --- HERO СЕКЦІЯ --- */
+        .fasdn-hero {
+            background-color: var(--fasdn-blue);
+            color: white; padding: 80px 10%;
+            display: flex; align-items: center; gap: 50px;
+        }
+        .fasdn-logo-large {
+            flex-shrink: 0; width: 300px; height: 300px;
+            background: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .fasdn-logo-large img { width: 85%; }
+
+        .hero-text h1 { font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero-text p { font-size: 1.05rem; max-width: 800px; opacity: 0.9; }
+
+        /* --- КОНТЕНТ --- */
+        .main-content { padding: 80px 10%; }
+        .section-title { font-size: 2rem; color: var(--gov-blue); margin-bottom: 40px; border-bottom: 2px solid var(--fasdn-blue); padding-bottom: 10px; }
+
+        .function-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .func-card { padding: 30px; background: var(--gov-grey); border-left: 5px solid var(--fasdn-blue); }
+        .func-card h4 { margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem; color: var(--gov-black); }
+
+        .structure-box { background: #f9f9f9; padding: 40px; border: 1px solid #ddd; margin-top: 40px; }
+        .dept-list { list-style: none; margin-top: 20px; }
+        .dept-list li { padding: 15px 0; border-bottom: 1px solid #eee; display: flex; align-items: baseline; }
+        .dept-list li strong { min-width: 250px; color: var(--fasdn-blue); }
+
+        footer { padding: 60px 10%; background: var(--gov-black); color: white; text-align: center; }
+
+        @media (max-width: 900px) {
+            .fasdn-hero { flex-direction: column; text-align: center; }
+            .fasdn-logo-large { width: 220px; height: 220px; }
+            .dept-list li { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="header-left">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span style="margin-left:10px">МЕНЮ</span>
+    </button>
+</header>
+
+<main>
+    <section class="fasdn-hero">
+        <div class="fasdn-logo-large">
+            <img src="Зображення/FASDN.png" alt="Логотип FASDN">
+        </div>
+        <div class="hero-text">
+            <h1>Федеральне агентство стандартизації документів та норм</h1>
+            <p>Надвідомчий орган Північного Підв'язнова, що забезпечує єдиний підхід до підготовки, оформлення та публікації всіх офіційних актів держави.</p>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <h2 class="section-title">Основні функції</h2>
+        <div class="function-grid">
+            <div class="func-card">
+                <h4>Шаблонізація</h4>
+                Розробка та підтримка єдиних шаблонів для указів, постанов, наказів та звітів.
+            </div>
+            <div class="func-card">
+                <h4>Контроль</h4>
+                Перевірка відповідності документів стандартам перед їх офіційною публікацією.
+            </div>
+            <div class="func-card">
+                <h4>Правові норми</h4>
+                Регулювання процедурних норм для запобігання зловживанням владою.
+            </div>
+            <div class="func-card">
+                <h4>IT-Інтеграція</h4>
+                Використання електронних підписів, баз даних та автоматизованих перевірок.
+            </div>
+            <div class="func-card">
+                <h4>Протокол</h4>
+                Забезпечення політкоректності та протокольної дисципліни на офіційних заходах.
+            </div>
+        </div>
+
+        <div class="structure-box">
+            <h2 class="section-title">Структура та підпорядкування</h2>
+            <p style="margin-bottom: 20px; font-style: italic;">Агентство безпосередньо підпорядковується Канцлеру та контролює всі відомства, включаючи Відомство Пильності та Флот.</p>
+            
+            <ul class="dept-list">
+                <li><strong>Відділ стандартизації</strong> <span>Розробка шаблонів та форматування текстів.</span></li>
+                <li><strong>Відділ контролю якості</strong> <span>Перевірка відповідності документів стандарту.</span></li>
+                <li><strong>Відділ цифрової інтеграції</strong> <span>Впровадження електронного документообігу.</span></li>
+                <li><strong>Відділ протоколу</strong> <span>Контроль офіційних заходів та брифінгів.</span></li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Федеральне агентство FASDN. Князівство Північне Подв'язново.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    }
+</script>
+
+</body>
+</html>

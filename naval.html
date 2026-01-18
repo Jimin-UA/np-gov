@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Військово-Морський Флот — Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gov-blue: #00305e;
+            --gov-red: #d92d20;
+            --gov-black: #000000;
+            --gov-grey: #f3f3f3;
+            --navy-dark: #5e0000; /* Темно-червоний колір з логотипу флоту */
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ШАПКА ТА МЕНЮ (УНІФІКОВАНО) --- */
+        header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; border-bottom: 3px solid var(--gov-black);
+            background: #fff; position: sticky; top: 0; z-index: 1000;
+        }
+        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        .menu-btn {
+            background: none; border: 2px solid transparent; cursor: pointer;
+            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
+            padding: 8px 15px; transition: var(--transition);
+        }
+        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
+
+        #menuOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none; padding: 50px 10%;
+            animation: fadeIn 0.3s ease; overflow-y: auto;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
+        .menu-list { list-style: none; }
+        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; margin-bottom: 12px; }
+        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+
+        /* --- ГЕРОЙ-СЕКЦІЯ (ВМФП) --- */
+        .navy-hero {
+            display: flex; align-items: center; padding: 60px 10%;
+            background: #fff; gap: 50px; animation: fadeIn 0.8s ease;
+        }
+        .navy-logo-container { flex: 0 0 320px; }
+        .navy-logo-container img { width: 100%; height: auto; }
+        .navy-hero-text h1 { font-size: 2.5rem; color: var(--gov-blue); line-height: 1.2; margin-bottom: 20px; }
+        .navy-hero-text p { font-size: 1.2rem; color: #444; text-align: justify; }
+
+        /* --- КОНТЕНТ --- */
+        .main-content { padding: 40px 10%; }
+
+        .admiral-section {
+            display: grid; grid-template-columns: 350px 1fr; gap: 60px;
+            margin: 80px 0; align-items: start;
+        }
+        .admiral-photo img { width: 100%; border-bottom: 10px solid var(--navy-dark); box-shadow: 20px 20px 0 var(--gov-grey); }
+        .admiral-bio h2 { font-size: 2.2rem; margin-bottom: 5px; }
+        .admiral-rank { color: var(--gov-red); font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .quote { font-style: italic; border-left: 4px solid var(--gov-blue); padding-left: 20px; margin: 25px 0; color: #555; }
+        
+        .bio-text h3 { margin: 25px 0 10px; color: var(--gov-blue); text-transform: uppercase; font-size: 1rem; border-bottom: 1px solid #ddd; }
+        .bio-text p { margin-bottom: 15px; text-align: justify; font-size: 0.95rem; }
+
+        /* --- КОРАБЛІ --- */
+        .ship-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+        .ship-card { background: var(--gov-grey); padding: 30px; transition: var(--transition); }
+        .ship-card:hover { transform: translateY(-10px); background: #eee; }
+        .ship-card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 20px; filter: grayscale(0.5); transition: 0.5s; }
+        .ship-card:hover img { filter: grayscale(0); }
+        .ship-info h4 { font-size: 1.5rem; margin-bottom: 10px; color: var(--navy-dark); }
+        .ship-specs { font-size: 0.9rem; list-style: none; }
+        .ship-specs li { margin-bottom: 5px; border-bottom: 1px solid #ccc; padding-bottom: 2px; }
+
+        footer { padding: 60px 10%; background: var(--gov-black); color: white; text-align: center; }
+
+        @media (max-width: 1024px) {
+            .navy-hero, .admiral-section, .ship-grid { grid-template-columns: 1fr; display: block; }
+            .navy-logo-container, .admiral-photo { width: 250px; margin: 0 auto 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="header-left">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span style="margin-left:10px">МЕНЮ</span>
+    </button>
+</header>
+
+<main>
+    <section class="navy-hero">
+        <div class="navy-logo-container">
+            <img src="Зображення/Лого_флота.png" alt="ВМФП">
+        </div>
+        <div class="navy-hero-text">
+            <h1>Військово-Морський Флот Князівства Північне Подв'язново (ВМФП)</h1>
+            <p>ВМФП — це перша надія оборони, оплот морської свободи, сили та дипломатичної величі. Ми захищаємо рубежі, підтримуємо мир і ведемо прапор Північного Подв'язнова по хвилях історії.</p>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <section class="admiral-section">
+            <div class="admiral-photo">
+                <img src="Зображення/Голова_флоту.png" alt="Адмірал">
+            </div>
+            <div class="admiral-bio">
+                <span class="admiral-rank">Адмірал флоту</span>
+                <h2>Граф Ієронім де Вальберг фон Сіверн</h2>
+                <p style="font-size: 0.85rem; color: #888;">(нар. 24 листопада 1967 року, Лозанна, Швейцарія)</p>
+                
+                <div class="quote">
+                    «Я не стільки командую флотом, скільки спостерігаю за горизонтом — і кожного дня думаю: з чого почнеться наступний ранок».
+                </div>
+
+                <div class="bio-text">
+                    <h3>Ранні роки</h3>
+                    <p>Народився в родині старовинного балтійсько-швейцарського дворянства. Батько викладав морську стратегію в Гамбурзі, мати була французькою художницею. Знає шість мов, включаючи латину.</p>
+                    
+                    <h3>Освіта та служба</h3>
+                    <p>Закінчив Військово-морську академію Скайндале (Нідерланди). Брав участь у миротворчих місіях. У 2025 році запрошений Князем Михайлом I для створення Морського Командування.</p>
+                    
+                    <h3>Створення Флоту</h3>
+                    <p>Сформував ВМФП на основі класичних традицій та принципах честі. Автор Морського Статуту та ініціатор проекту «Білі кораблі» — стратегії оборони без агресії.</p>
+                </div>
+            </div>
+        </section>
+
+        <h2 style="text-transform: uppercase; color: var(--gov-blue); border-top: 4px solid #000; padding-top: 20px;">Основний склад флоту</h2>
+        <div class="ship-grid">
+            <div class="ship-card">
+                <img src="Зображення/Лінкор_лексендорф.png" alt="Лексендорф">
+                <div class="ship-info">
+                    <h4>Лінкор "Лексендорф"</h4>
+                    <ul class="ship-specs">
+                        <li><strong>Тип:</strong> Лінійний корабель</li>
+                        <li><strong>Статус:</strong> Рендер затверджений у 1925 році</li>
+                        <li><strong>Призначення:</strong> Флагман стратегічної оборони</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ship-card">
+                <img src="Зображення/Святий_Михайл_III.png" alt="Святий Михайло">
+                <div class="ship-info">
+                    <h4>Крейсер "Святий Михайло III"</h4>
+                    <ul class="ship-specs">
+                        <li><strong>Тип:</strong> Легкий крейсер</li>
+                        <li><strong>Клас:</strong> Михайло</li>
+                        <li><strong>Вступив у стрій:</strong> 20 липня 1925 року</li>
+                        <li><strong>Девіз:</strong> “Стріла з небес”</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Військово-Морський Флот Північного Подв'язнова. Всі права захищені.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    }
+</script>
+
+</body>
+</html>

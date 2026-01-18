@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відомство Грошей — Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gov-blue: #00305e;
+            --gov-red: #d92d20;
+            --gov-black: #000000;
+            --gov-grey: #f3f3f3;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ШАПКА --- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 5%;
+            border-bottom: 3px solid var(--gov-black);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        .menu-btn {
+            background: none; border: 2px solid transparent; cursor: pointer;
+            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
+            padding: 8px 15px; transition: var(--transition);
+        }
+        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
+
+        /* --- ПОВНЕ МЕНЮ (ЗГІДНО З ABOUT.HTML) --- */
+        #menuOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none; padding: 50px 10%;
+            animation: fadeIn 0.3s ease; overflow-y: auto;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
+        .close-btn:hover { background: var(--gov-red); }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
+        .menu-list { list-style: none; }
+        .menu-list li { margin-bottom: 12px; }
+        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; }
+        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+
+        /* --- КОНТЕНТ ВІДОМСТВА --- */
+        .agency-hero {
+            width: 100%;
+            background: var(--gov-grey);
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .agency-hero img { width: 100%; max-width: 1600px; height: auto; display: block; }
+
+        .content-section { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
+        
+        .motto {
+            font-size: 1.5rem; color: var(--gov-red); font-weight: 700; margin-bottom: 30px;
+            font-style: italic; border-left: 4px solid var(--gov-red); padding-left: 20px;
+        }
+
+        .agency-title { font-size: 3rem; text-transform: uppercase; color: var(--gov-black); margin-bottom: 40px; }
+
+        .description-box { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .description-text p { font-size: 1.15rem; margin-bottom: 25px; text-align: justify; color: #333; }
+
+        .quote-card { background: var(--gov-blue); color: white; padding: 40px; }
+        .quote-card h4 { font-size: 1.3rem; margin-bottom: 15px; text-transform: uppercase; }
+
+        footer { padding: 60px 10%; background: var(--gov-black); color: white; text-align: center; }
+
+        @media (max-width: 1024px) {
+            .description-box { grid-template-columns: 1fr; }
+            .agency-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="header-left">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span style="margin-left:10px">МЕНЮ</span>
+    </button>
+</header>
+
+<main>
+    <section class="agency-hero">
+        <img src="Зображення/Лого_відомства_грошей.png" alt="Логотип Відомства Грошей">
+    </section>
+
+    <section class="content-section">
+        <div class="motto">"Рахувати гроші — мистецтво, а мистецтво у нас цінують!"</div>
+        
+        <h1 class="agency-title">Відомство Монет</h1>
+
+        <div class="description-box">
+            <div class="description-text">
+                <p>Відомство Монет — один із найбільших і, безсумнівно, найповажніших органів князівства, що стоїть на варті економічної величі нашої держави. Саме тут вершиться доля кожного шляхетного рубля, з любов'ю карбованого нашими найкращими майстрами калькулятора.</p>
+                <p>Наші фінансові стратеги, озброєні пір'ям, абаками та незламною вірою в економічне процвітання, щодня працюють, щоб забезпечити стабільність, прозорість та благородну велич нашої монетарної системи.</p>
+            </div>
+            
+            <div class="quote-card">
+                <h4>Офіційний девіз</h4>
+                <p style="font-size: 1.4rem; font-weight: 300;">"Срібло блищить, золото гріє, а бюджет надихає!"</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Відомство Монет — Північне Подв'язново.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    }
+</script>
+
+</body>
+</html>

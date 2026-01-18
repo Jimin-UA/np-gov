@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відомство Бдітєльності — Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Специфічні стилі для контенту відомства */
+        .agency-content {
+            padding: 80px 10%;
+            text-align: center;
+            min-height: 60vh;
+        }
+        .agency-logo-main {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 40px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-card {
+            background: var(--gov-grey);
+            padding: 40px;
+            border-top: 4px solid var(--gov-blue);
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        .crime-alert {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed var(--gov-red);
+            color: var(--gov-red);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .email-text {
+            font-size: 1.25rem;
+            color: var(--gov-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .email-text:hover {
+            color: var(--gov-red);
+        }
+    </style>
+</head>
+<body>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="header-left" style="text-decoration: none; color: inherit;">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span style="margin-left:10px">МЕНЮ</span>
+    </button>
+</header>
+
+<main class="agency-content">
+    <img src="Зображення/Лого_відомства_бдітєльності.png" alt="Відомство Бдітєльності" class="agency-logo-main">
+    
+    <span class="section-label">Офіційний канал зв'язку</span>
+    <h1>Відомство Бдітєльності</h1>
+
+    <div class="contact-card">
+        <p>У вас виникли питання щодо роботи служби? Звертайтесь на пошту:</p>
+        <a href="mailto:chiminbangtanboys@gmail.com" class="email-text">chiminbangtanboys@gmail.com</a>
+        
+        <div class="crime-alert">
+            Ви стали свідком злочину?
+        </div>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+            Повідомте про це Відомство негайно. Ваша пильність забезпечує стабільність держави.
+        </p>
+    </div>
+
+    <div class="btn-group" style="justify-content: center;">
+        <a href="index.html" class="btn btn-blue">На головну</a>
+        <a href="about.html" class="btn btn-red">Про державу</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Князівство Північне Подв'язново. Всі права захищені.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    }
+</script>
+
+</body>
+</html>

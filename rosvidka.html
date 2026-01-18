@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Служба Зовнішньої Розвідки — Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gov-blue: #00305e;
+            --gov-red: #d92d20;
+            --gov-black: #000000;
+            --gov-grey: #f3f3f3;
+            --intel-dark: #004a77;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ШАПКА ТА МЕНЮ (АНІМАЦІЇ ТА СТИЛІ З ABOUT.HTML) --- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 5%;
+            border-bottom: 3px solid var(--gov-black);
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        .menu-btn {
+            background: none; border: 2px solid transparent; cursor: pointer;
+            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
+            padding: 8px 15px; transition: var(--transition);
+        }
+        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
+
+        /* Оверлей меню з анімацією */
+        #menuOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none; padding: 50px 10%;
+            animation: fadeIn 0.3s ease; overflow-y: auto;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
+        .close-btn:hover { background: var(--gov-red); }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
+        .menu-list { list-style: none; }
+        .menu-list li { margin-bottom: 12px; }
+        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; }
+        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+
+        /* --- СЕКЦІЯ РОЗВІДКИ --- */
+        .intel-hero {
+            background-color: var(--intel-dark);
+            color: white;
+            padding: 80px 10%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        .intel-hero-logo { flex: 0 0 300px; }
+        /* Логотип лежить там де й герб - Зображення/Лого_служби_Розвідки.png */
+        .intel-hero-logo img { width: 100%; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); }
+        
+        .intel-hero-text h1 { font-size: 3rem; margin-bottom: 20px; }
+        .intel-hero-text p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; text-align: justify; }
+
+        .main-content { padding: 80px 10%; }
+
+        /* Анімація появи карток при прокрутці */
+        .tasks-list { 
+            list-style: none; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+        }
+        .tasks-list li { 
+            background: var(--gov-grey); 
+            padding: 25px; 
+            border-left: 5px solid var(--gov-blue); 
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .tasks-list li:hover { transform: translateX(10px); background: #eee; }
+
+        .motto-box {
+            text-align: center;
+            padding: 60px;
+            background: var(--gov-grey);
+            margin: 60px 0;
+            border: 1px solid #ddd;
+        }
+        .motto-text { font-size: 2.5rem; font-weight: 300; color: #666; font-style: italic; }
+
+        .heritage-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .heritage-image img { width: 100%; box-shadow: 20px 20px 0px var(--gov-grey); transition: 0.5s; }
+        .heritage-image img:hover { transform: scale(1.02); }
+
+        footer { padding: 60px 10%; background: var(--gov-black); color: white; text-align: center; }
+
+        @media (max-width: 1024px) {
+            .intel-hero, .heritage-block { flex-direction: column; text-align: center; }
+            .intel-hero-logo { flex: 0 0 auto; width: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="header-left">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span style="margin-left:10px">МЕНЮ</span>
+    </button>
+</header>
+
+<main>
+    <section class="intel-hero">
+        <div class="intel-hero-logo">
+            <img src="Зображення/Лого_служби_Розвідки.png" alt="Лого СЗР">
+        </div>
+        <div class="intel-hero-text">
+            <h1>Служба Розвідки</h1>
+            <p>Служба Зовнішньої Розвідки Республіки Підв'язново – це незалежне відомство, яке підпорядковується безпосередньо Великому Князю. Ми займаємося забезпеченням безпеки Князівства за її межами, виявленням зовнішніх загроз та веденням стратегічного аналізу.</p>
+            <div style="border-left: 3px solid var(--gov-red); padding-left: 20px; font-style: italic; opacity: 0.8;">
+                <p>Наша мета – не війна, але знання.</p>
+                <p>Наша місія не вторгнення, а передбачення.</p>
+                <p>Наша клятва – народу та його правді.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <h2 style="margin-bottom: 40px; text-transform: uppercase; color: var(--gov-red);">Основні завдання:</h2>
+        <ul class="tasks-list">
+            <li>1. Збір та аналіз інформації про політичні, військові та економічні процеси за кордоном</li>
+            <li>2. Протидія іноземним спецслужбам</li>
+            <li>3. Забезпечення стратегічної безпеки під час зовнішньополітичних криз</li>
+            <li>4. Захист інтересів Підв'язново за кордоном</li>
+        </ul>
+
+        <div class="motto-box">
+            <span style="color: var(--gov-blue); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 10px;">Наш девіз</span>
+            <div class="motto-text">"Мовчазні. Непомітні. Незамінні."</div>
+        </div>
+
+        <section class="heritage-block">
+            <div class="heritage-text">
+                <h2 style="font-size: 2rem; margin-bottom: 25px; border-top: 4px solid var(--gov-black); padding-top: 20px;">Натхнення та спадщина</h2>
+                <p>Ми поділяємо ключові цінності, закладені в системі BND (Федеральна розвідувальна служба Німеччини):</p>
+                <ul style="list-style: none; margin: 20px 0;">
+                    <li style="margin-bottom: 15px;"><strong>• Підзвітність</strong> — розвідка під контролем цивільного суспільства.</li>
+                    <li style="margin-bottom: 15px;"><strong>• Захист демократії</strong> — стійкість республіканського ладу понад усе.</li>
+                    <li style="margin-bottom: 15px;"><strong>• Аналітика</strong> — розуміння замість простого стеження.</li>
+                </ul>
+                <p style="color: #666; font-size: 1.2rem; font-style: italic;">"Розвідка Підв'язново не ховається від світу - вона його вивчає."</p>
+            </div>
+            <div class="heritage-image">
+                <img src="https://lh7-rt.googleusercontent.com/sitesz/AClOY7o5e-_WcB4yxru34XcmsKL2HXc0eGm6esHCS-j3eTUO9Ksy5EY9bZkz2RIhYMkkQr13iChEYna8b7uHRU7gyu-qdJ5SW4rUrUeNQM8QTxtBffuVmev1K1rqtlWqnh5fO4K4uq-LFD47XT8ue6ck1rLulFrI1FsQmXhTvBqeLicycm6WYqSqWWfJ-w2uWiKk?key=5HfSrk5JYBUHHShXCUgK5vWv" alt="BND Logo">
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Князівство Північне Подв'язново. Всі права захищені.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    }
+</script>
+
+</body>
+</html>

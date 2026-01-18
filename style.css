@@ -1,0 +1,223 @@
+/* ЦЕНТРАЛЬНИЙ СТИЛЬОВИЙ ФАЙЛ: ПІВНІЧНЕ ПОДВ'ЯЗНОВО
+   Опис: Цей файл містить усі візуальні налаштування державного порталу.
+*/
+
+/* --- 1. ГЛОБАЛЬНІ ЗМІННІ ТА НАЛАШТУВАННЯ --- */
+:root {
+    /* Основна колірна палітра: державний синій, червоний та нейтральні тони */
+    --gov-blue: #00305e;
+    --gov-red: #d92d20;
+    --gov-black: #000000;
+    --gov-grey: #f3f3f3;
+    /* Плавність анімації для кнопок та посилань */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- 2. ШАПКА САЙТУ (HEADER) --- */
+/* Стилі для верхньої панелі, яка залишається закріпленою при скролі */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 5%;
+    border-bottom: 3px solid var(--gov-black);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left { display: flex; align-items: center; }
+
+/* Логотип (герб) з лінією-розділювачем праворуч */
+.logo-box img { 
+    height: 65px; 
+    margin-right: 20px; 
+    border-right: 1px solid #ddd; 
+    padding-right: 20px; 
+}
+
+.header-title { 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-size: 0.95rem; 
+}
+
+/* Підпис назви держави під основним титулом */
+.header-title span { 
+    color: var(--gov-red); 
+    font-size: 0.8rem; 
+    font-weight: 400; 
+}
+
+/* --- 3. НАВІГАЦІЙНЕ МЕНЮ (OVERLAY) --- */
+/* Кнопка відкриття меню */
+.menu-btn {
+    background: none; border: 2px solid transparent; cursor: pointer;
+    display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
+    padding: 8px 15px; transition: var(--transition);
+}
+.menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
+
+/* Повноекранне вікно меню, яке з'являється при кліку */
+#menuOverlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: white; z-index: 2000; display: none; padding: 50px 10%;
+    animation: fadeIn 0.3s ease; overflow-y: auto;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Кнопка закриття всередині меню */
+.close-btn { 
+    background: var(--gov-black); color: white; border: none; 
+    padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; 
+}
+.close-btn:hover { background: var(--gov-red); }
+
+/* Сітка для розділів меню: Держава, Канцлер, Громадянам */
+.menu-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 40px; 
+}
+
+.menu-section h3 { 
+    color: var(--gov-blue); 
+    border-bottom: 2px solid var(--gov-red); 
+    padding-bottom: 10px; 
+    margin-bottom: 15px; 
+    text-transform: uppercase; 
+}
+
+.menu-list { list-style: none; }
+.menu-list li { margin-bottom: 12px; }
+.menu-list a { 
+    text-decoration: none; 
+    color: #000; 
+    transition: 0.2s; 
+    display: block; 
+}
+/* Ефект зсуву при наведенні на пункт меню */
+.menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+
+/* --- 4. ГОЛОВНИЙ БАНЕР (HERO SECTION) --- */
+/* Блок з фоновим зображенням та текстом Преамбули */
+.block-preamble {
+    position: relative; height: 600px; display: flex; align-items: center; color: white;
+    background: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1600') center/cover;
+    padding: 0 10%;
+}
+
+/* Темний фільтр поверх картинки, щоб текст краще читався */
+.block-preamble::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7); z-index: 1;
+}
+
+.preamble-content { position: relative; z-index: 2; max-width: 800px; }
+
+/* Заголовок Преамбули з червоною лінією зліва */
+.preamble-content h1 { 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+    border-left: 6px solid var(--gov-red); 
+    padding-left: 20px; 
+    line-height: 1.2; 
+}
+
+/* --- 5. ПРО ДЕРЖАВУ (ДЕРЖАВНИЙ УСТРІЙ) --- */
+.block-about { 
+    padding: 80px 10%; 
+    background: #fff; 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 60px; 
+    align-items: center; 
+}
+
+.about-text h2 { font-size: 2rem; margin-bottom: 20px; color: var(--gov-black); }
+
+/* Стилі для кнопок (Синя та Червона) */
+.btn-group { display: flex; gap: 15px; flex-wrap: wrap; }
+.btn { 
+    padding: 14px 28px; text-decoration: none; font-weight: 700; 
+    transition: var(--transition); text-transform: uppercase; font-size: 0.9rem; 
+}
+.btn-blue { background: var(--gov-blue); color: white; }
+.btn-red { background: var(--gov-red); color: white; }
+.btn:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+}
+
+/* --- 6. НОВИНИ ТА РЕСУРСИ --- */
+.block-news { padding: 80px 10%; background: var(--gov-grey); }
+
+.section-label { 
+    color: var(--gov-blue); font-weight: 700; text-transform: uppercase; 
+    letter-spacing: 1px; display: block; margin-bottom: 30px; 
+}
+
+.news-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+/* Картка новини з ефектом збільшення при наведенні */
+.news-card { 
+    background: white; border-bottom: 4px solid var(--gov-blue); 
+    transition: var(--transition); text-decoration: none; color: inherit; 
+}
+.news-card:hover { border-bottom-color: var(--gov-red); transform: scale(1.02); }
+.news-card img { width: 100%; height: 220px; object-fit: cover; }
+.news-body { padding: 25px; }
+.news-body span { color: var(--gov-red); font-weight: 700; font-size: 0.8rem; }
+
+/* --- 7. ДОШКА УКАЗІВ --- */
+.block-decrees { padding: 80px 10%; background: white; }
+
+/* Рядок окремого указу */
+.decree-item { 
+    display: flex; justify-content: space-between; padding: 20px; 
+    border-bottom: 1px solid #eee; transition: 0.2s; cursor: pointer;
+}
+/* Виділення указу червоною лінією при наведенні курсору */
+.decree-item:hover { 
+    background: #fff8f8; 
+    border-left: 4px solid var(--gov-red); 
+}
+.decree-title { font-weight: 600; color: var(--gov-black); }
+.decree-date { color: var(--gov-red); font-weight: 700; }
+
+/* --- 8. ФУТЕР (ПІДВАЛ) --- */
+footer { 
+    padding: 40px 10%; 
+    background: var(--gov-black); 
+    color: white; 
+    font-size: 0.85rem; 
+    text-align: center; 
+}
+
+/* --- 9. АДАПТИВНІСТЬ (MOBILE RESPONSIVE) --- */
+@media (max-width: 768px) {
+    /* На мобільних екранах тексти центруємо, а колонки ставимо одну під одну */
+    .block-about { grid-template-columns: 1fr; text-align: center; }
+    .preamble-content h1 { font-size: 1.8rem; }
+    /* Ховаємо довгу назву в шапці на користь логотипу та меню */
+    .header-title { display: none; }
+}

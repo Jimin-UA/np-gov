@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відомство Земських справ — Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Використання системних змінних з style.css */
+        :root {
+            --gov-blue: #00305e;
+            --gov-red: #d92d20;
+            --gov-black: #000000;
+            --gov-grey: #f3f3f3;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ШАПКА (КОПІЯ З ABOUT.HTML) --- */
+        header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; border-bottom: 3px solid var(--gov-black);
+            background: #fff; position: sticky; top: 0; z-index: 1000;
+        }
+        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
+        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        /* --- МЕНЮ (ПОВНА ВЕРСІЯ З ABOUT.HTML) --- */
+        .menu-btn {
+            background: none; border: 2px solid transparent; cursor: pointer;
+            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
+            padding: 8px 15px; transition: var(--transition);
+        }
+        #menuOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none; padding: 50px 10%;
+            animation: fadeIn 0.3s ease; overflow-y: auto;
+        }
+        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
+        .menu-list { list-style: none; }
+        .menu-list li { margin-bottom: 12px; }
+        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; }
+        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+
+        /* --- БЛОК 1: ПРИВІТАННЯ ТА ЛОГО --- */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+            border-bottom: 1px solid #ddd;
+        }
+        .hero-logo-side {
+            background: var(--gov-grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .hero-logo-side img {
+            max-width: 80%;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+        .hero-text-side {
+            padding: 80px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero-text-side p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* --- БЛОК 2: ЗАВДАННЯ (НІМЕЦЬКИЙ СТИЛЬ) --- */
+        .german-style-section {
+            padding: 100px 10%;
+            background: #fff;
+        }
+        .section-header-order {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--gov-black);
+            padding-bottom: 20px;
+        }
+        .section-header-order h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .duties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px;
+            background: var(--gov-black); /* Колір ліній між картками */
+            border: 2px solid var(--gov-black);
+        }
+        .duty-item {
+            background: #fff;
+            padding: 40px;
+            transition: var(--transition);
+        }
+        .duty-item:hover {
+            background: var(--gov-grey);
+        }
+        .duty-num {
+            color: var(--gov-red);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .duty-item h3 {
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        /* --- СТРУКТУРА ТА ДІЯЛЬНІСТЬ --- */
+        .structure-box {
+            background: var(--gov-blue);
+            color: white;
+            padding: 80px 10%;
+            margin: 60px 0;
+        }
+        .structure-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+        .structure-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .structure-list strong {
+            color: #ffcc00; /* Золотистий акцент */
+            display: block;
+            font-size: 1.2rem;
+        }
+
+        /* --- СЛОВО КНЯЗЯ --- */
+        .prince-word {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 60px;
+            border: 1px solid #ddd;
+            position: relative;
+            text-align: center;
+            background: #fdfdfd;
+        }
+        .prince-word::before {
+            content: "«";
+            position: absolute;
+            top: -20px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 5rem;
+            color: var(--gov-red);
+            background: #fff;
+            padding: 0 20px;
+        }
+        .prince-word p {
+            font-style: italic;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #222;
+        }
+        .signature {
+            margin-top: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gov-blue);
+        }
+
+        footer { padding: 40px 10%; background: var(--gov-black); color: white; text-align: center; }
+
+        @media (max-width: 1024px) {
+            .hero-split { grid-template-columns: 1fr; }
+            .hero-logo-side { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header>
+    <a href="index.html" class="header-left">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <span style="margin-left:10px">МЕНЮ</span>
+    </button>
+</header>
+
+<main>
+    <section class="hero-split">
+        <div class="hero-logo-side">
+            <img src="Зображення/Лого_земських_справ.png" alt="Логотип Земства">
+        </div>
+        <div class="hero-text-side">
+            <p><strong>Земство</strong> — це особливий орган управління на місцевому рівні, створений для турботи про життя та порядок у наших селах та повітах.</p>
+            <p>Це збори обраних підданих, які стежать за тим, щоб земля була доглянута, дороги проїжджими, а мешканці захищені від бід і несправедливості.</p>
+            <p>Земство вирішує питання, важливі для кожного: від ремонту мостів до допомоги нужденним та розподілу податків.</p>
+            <p style="border-top: 1px solid #ddd; padding-top: 20px; font-style: italic;">Простіше кажучи, земство — це руки та очі князя в землі, найближча до народу влада, яка допомагає зробити життя кращим.</p>
+        </div>
+    </section>
+
+    <section class="german-style-section">
+        <div class="section-header-order">
+            <h2>Завдання та Обов'язки</h2>
+        </div>
+        
+        <div class="duties-grid">
+            <div class="duty-item">
+                <span class="duty-num">01.</span>
+                <h3>Земельний Кадастр</h3>
+                <p>Облік земель та володінь, ведення земельної книги.</p>
+            </div>
+            <div class="duty-item">
+                <span class="duty-num">02.</span>
+                <h3>Фіскальне управління</h3>
+                <p>Затвердження зборів та повинностей, розподіл податків на благо князівства.</p>
+            </div>
+            <div class="duty-item">
+                <span class="duty-num">03.</span>
+                <h3>Суспільне віче</h3>
+                <p>Організація місцевих сходів для вирішення суспільних питань та спорів.</p>
+            </div>
+            <div class="duty-item">
+                <span class="duty-num">04.</span>
+                <h3>Інфраструктурний нагляд</h3>
+                <p>Контроль за станом доріг, мостів та громадських будівель.</p>
+            </div>
+            <div class="duty-item">
+                <span class="duty-num">05.</span>
+                <h3>Соціальна опіка</h3>
+                <p>Сприяння нужденним та захист від свавілля чиновників.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="structure-box">
+        <h2>Структура та Склад</h2>
+        <ul class="structure-list">
+            <li><strong>1. Маршалок Земський</strong> Призначається князем з числа найбільш гідних та мудрих.</li>
+            <li><strong>2. Члени Земських Зборів</strong> Повітові землевласники, купці, ремісники, по можливості з грамотністю та честю.</li>
+            <li><strong>3. Писар Земський</strong> Веде протоколи та зберігає записи.</li>
+        </ul>
+    </section>
+
+    <section style="padding: 40px 10%; max-width: 1000px;">
+        <h2 style="margin-bottom: 20px; color: var(--gov-blue);">Діяльність</h2>
+        <p style="font-size: 1.1rem;">Земські Збори збираються регулярно, за указом Голови, а в невідкладних випадках — на вимогу членів. У зборах ведеться суворий облік всіх справ, озвучуються скарги та клопотання, виробляються рішення на подання Князю і Канцлеру.</p>
+    </section>
+
+    <section class="prince-word">
+        <p>Земство — оплот народної сили та опора нашого князівства. Без нього немає порядку та немає розвитку. Нехай служить воно з честю та вірністю князівству.</p>
+        <div class="signature">Михайло I, Князь Північного Подв'язнова</div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Відомство Земських справ — Північне Подв'язново.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menuOverlay');
+        const isVisible = menu.style.display === 'block';
+        menu.style.display = isVisible ? 'none' : 'block';
+        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    }
+</script>
+
+</body>
+</html>

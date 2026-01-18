@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конституція Князівства Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gov-blue: #00305e;
+            --gov-red: #d92d20;
+            --gov-black: #000000;
+            --paper: #ffffff;
+            --ink: #1a1a1a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: #f0f0f0;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* --- НАВІГАЦІЯ --- */
+        header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; border-bottom: 2px solid var(--gov-black);
+            background: #fff; position: sticky; top: 0; z-index: 1000;
+            font-family: 'Inter', sans-serif;
+        }
+        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo-box img { height: 45px; margin-right: 15px; }
+        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+        #menuOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 2000; display: none; padding: 50px 10%;
+            font-family: 'Inter', sans-serif; overflow-y: auto;
+        }
+        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 20px; cursor: pointer; margin-bottom: 30px; }
+
+        /* --- СТИЛЬ ДОКУМЕНТА --- */
+        .document-wrapper {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--paper);
+            padding: 100px 120px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .seal {
+            text-align: center; margin-bottom: 50px;
+        }
+        .seal img { width: 150px; opacity: 0.9; }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--gov-blue);
+        }
+
+        .doc-subtitle {
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 60px;
+            color: var(--gov-red);
+            font-weight: 600;
+        }
+
+        .preamble {
+            font-size: 1.4rem;
+            text-align: justify;
+            margin-bottom: 60px;
+            font-style: italic;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 40px;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gov-blue);
+            margin: 80px 0 40px;
+            text-align: center;
+            border-top: 2px solid var(--gov-black);
+            padding-top: 20px;
+        }
+
+        .article { margin-bottom: 35px; }
+        .article-head {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            display: block;
+            color: var(--gov-black);
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .clause { margin-bottom: 10px; text-align: justify; }
+        .clause-num { font-weight: 700; color: var(--gov-red); margin-right: 8px; }
+
+        .conclusion-block {
+            margin-top: 100px;
+            padding: 50px;
+            border: 4px double var(--gov-blue);
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        footer { text-align: center; padding: 40px; font-family: 'Inter', sans-serif; color: #888; }
+
+        @media (max-width: 850px) {
+            .document-wrapper { padding: 60px 30px; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="header-left">
+        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
+        <div class="header-title">Князівство <br>Північне Подв'язново</div>
+    </a>
+    <button style="font-family:'Inter'; font-weight:700; cursor:pointer;" onclick="document.getElementById('menuOverlay').style.display='block'">МЕНЮ</button>
+</header>
+
+<div id="menuOverlay">
+    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
+    <div class="menu-grid">
+        <div class="menu-section">
+            <h3>Держава</h3>
+            <ul class="menu-list">
+                <li><a href="index.html">Головна сторінка</a></li>
+                <li><a href="about.html">Про державу</a></li>
+                <li><a href="constitution.html">Конституція</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Канцлер</h3>
+            <ul class="menu-list">
+                <li><a href="kantsler.html">Відомство Канцлера</a></li>
+                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                <li><a href="groshey.html">Відомство Грошей</a></li>
+                <li><a href="sprav.html">Відомство Земських справ</a></li>
+                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
+                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
+                <li><a href="FASDN.html">FASDN</a></li>
+                <li><a href="APDPN.html">APDPN</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>Громадянам</h3>
+            <ul class="menu-list">
+                <li><a href="#">Титули та жалування</a></li>
+                <li><a href="#">Підданство</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="document-wrapper">
+        <div class="seal"><img src="Зображення/герб.png" alt="Велика Державна Печатка"></div>
+        
+        <h1>Конституція</h1>
+        <p class="doc-subtitle">Князівство Північне Подв'язново</p>
+
+        <div class="preamble">
+            Ми, народ Північного Підв'язнова, виходячи з природного права на самовизначення, керуючись принципами суверенітету, законності та відповідальності перед історією та майбутніми поколіннями, проголошуємо створення незалежної держави — Князівство Північне Подв'язново.
+            <br><br>
+            Утверджуючи свою державність відповідно до міжнародного права та у дусі Конвенції Монтевідео 1933 року, ми володіємо: постійним населенням, визначеною територією, здатним до виконання функцій урядом та можливістю вступати у взаємовідносини з іншими державами.
+            <br><br>
+            Ми не ставимо собі за мету отримання зовнішнього визнання як умови існування. Суверенітет Північного Підв'язнова є внутрішнім і безумовним. Його джерело — воля народу, закріплена цією Конституцією.
+        </div>
+
+        <h2 class="section-header">Розділ I. Основи Державного Устрою</h2>
+        
+        <div class="article">
+            <span class="article-head">Стаття 1. Державна природа та суверенітет</span>
+            <p class="clause"><span class="clause-num">1.1.</span> Князівство Північне Подв'язново є вільним, незалежним та суверенним конституційним Князівством, заснованим на принципах справедливості, прав людини та ліберальних цінностей.</p>
+            <p class="clause"><span class="clause-num">1.2.</span> Народ є єдиним джерелом влади у Князівстві Північне Подв'язново. Народ здійснює свою владу безпосередньо, а також через органи державної влади та місцевого самоврядування відповідно до цієї Конституції та законів.</p>
+            <p class="clause"><span class="clause-num">1.3.</span> Державна влада у Князівстві Північне Подв'язново здійснюється на основі поділу на законодавчу, виконавчу та судову. Органи законодавчої, виконавчої та судової влади є самостійними.</p>
+            <p class="clause"><span class="clause-num">1.4.</span> Державними символами Князівства Північне Подв'язново є прапор, герб і гімн, опис та порядок використання яких встановлюються Конституційним законом.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 2. Князь Північного Підв'язнова</span>
+            <p class="clause"><span class="clause-num">2.1.</span> Князь Північного Підв'язнова є Главою Держави, символом національної єдності та гарантом дотримання Конституції, прав і свобод людини та громадянина. Князь виступає як верховний арбітр у системі поділу влад, забезпечуючи баланс між Сенатом та Урядом.</p>
+            <p class="clause"><span class="clause-num">2.2.</span> Статус, порядок успадкування (обрання, якщо застосовно), повноваження та відповідальність Князя визначаються окремим Конституційним законом, що відповідає принципам цієї Конституції.</p>
+            <p class="clause"><span class="clause-num">2.3.</span> Князь здійснює свої повноваження у суворій відповідності до Конституції та законів Князівства, забезпечуючи стабільність та наступність державної влади.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 3. Верховенство Конституції та правової системи</span>
+            <p class="clause"><span class="clause-num">3.1.</span> Конституція Князівства Північне Подв'язново має вищу юридичну силу та пряму дію на всій території Князівства. Закони та інші правові акти, що приймаються у Князівстві, не повинні суперечити Конституції.</p>
+            <p class="clause"><span class="clause-num">3.2.</span> Загальновизнані принципи і норми міжнародного права та міжнародні договори Князівства Північне Подв'язново є складовою частиною його правової системи. Якщо міжнародним договором Князівства встановлено інші правила, ніж передбачені законом, то застосовуються правила міжнародного договору.</p>
+        </div>
+
+        <h2 class="section-header">Розділ II. Права і Свободи Людини і Громадянина</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 4. Основні принципи</span>
+            <p class="clause"><span class="clause-num">4.1.</span> Держава зобов'язується захищати права і свободи кожної людини і громадянина незалежно від походження, віросповідання, статі, етнічної приналежності, раси, мови, місця проживання, майнового стану, посадового становища, ставлення до релігії, переконань, приналежності до громадських об'єднань, а також будь-яких інших характеристик.</p>
+            <p class="clause"><span class="clause-num">4.2.</span> Рівність і недискримінація є основою суспільного устрою та законодавства Князівства. Усі рівні перед законом і судом.</p>
+            <p class="clause"><span class="clause-num">4.3.</span> Здійснення прав і свобод людини і громадянина не повинно порушувати права і свободи інших осіб.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 5. Особисті права і свободи</span>
+            <p class="clause"><span class="clause-num">5.1.</span> Кожен має право на життя та особисту недоторканність. Ніхто не може бути свавільно позбавлений життя. Позбавлення волі, жорстоке або таке, що принижує гідність, поводження заборонені, за винятком випадків, передбачених законом, із гарантією дотримання прав людини та належних правових процедур.</p>
+            <p class="clause"><span class="clause-num">5.2.</span> Кожен має право на захист своєї особистості, свободи та гідності. Будь-які форми насильства — фізичне, психологічне чи інше — вважаються тяжкими злочинами та переслідуються за законом.</p>
+            <p class="clause"><span class="clause-num">5.3.</span> Кожен має право на недоторканність приватного життя, особисту та сімейну таємницю, захист своєї честі та доброго імені.</p>
+            <p class="clause"><span class="clause-num">5.4.</span> Кожен має право на таємницю листування, телефонних переговорів, поштових, телеграфних та інших повідомлень. Обмеження цього права допускається лише на підставі судового рішення.</p>
+            <p class="clause"><span class="clause-num">5.5.</span> Кожен, хто законно перебуває на території Князівства, має право на вільне пересування, вибір місця перебування та проживання.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 6. Політичні права і свободи</span>
+            <p class="clause"><span class="clause-num">6.1.</span> Ми підтверджуємо право кожної людини на свободу совісті, думки і слова. Ніхто не може бути примушений до вираження своїх переконань або відмови від них.</p>
+            <p class="clause"><span class="clause-num">6.2.</span> Кожен має право на свободу масової інформації. Цензура забороняється. Держава зобов'язана забезпечувати свободу ЗМІ та захищати журналістів від цензури, тиску та переслідувань.</p>
+            <p class="clause"><span class="clause-num">6.3.</span> Громадяни мають право на вільне отримання, передачу, виробництво та поширення інформації будь-яким законним способом. Кожен громадянин має право на вільний доступ до достовірної інформації про діяльність органів влади, економіку, соціальне життя.</p>
+            <p class="clause"><span class="clause-num">6.4.</span> Громадяни Князівства мають право збиратися мирно, без зброї, проводити збори, мітинги, демонстрації, походи і пікетування. Мирні збори не можуть бути заборонені без законних підстав.</p>
+            <p class="clause"><span class="clause-num">6.5.</span> Громадяни Князівства мають право брати участь в управлінні справами держави як безпосередньо, так і через своїх представників.</p>
+            <p class="clause"><span class="clause-num">6.6.</span> Громадяни Князівства мають право обирати і бути обраними до органів державної влади та органів місцевого самоврядування.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 7. Економічні, соціальні та культурні права</span>
+            <p class="clause"><span class="clause-num">7.1.</span> Кожен має право на вільне використання своїх здібностей і майна для підприємницької та іншої не забороненої законом економічної діяльності.</p>
+            <p class="clause"><span class="clause-num">7.2.</span> Держава зобов'язується надавати безкоштовну та доступну освіту для всіх громадян. Освіта повинна підтримувати розвиток критичного мислення та свободи вибору.</p>
+            <p class="clause"><span class="clause-num">7.3.</span> Свобода творчості, наукових досліджень та інновацій визнаються найважливішими ресурсами держави і захищаються законом.</p>
+            <p class="clause"><span class="clause-num">7.4.</span> Кожен має право на сприятливе навколишнє середовище та на відшкодування збитків, завданих екологічним правопорушенням.</p>
+            <p class="clause"><span class="clause-num">7.5.</span> Держава забезпечує підтримку мов, що знаходяться під загрозою зникнення, та культурним ініціативам.</p>
+        </div>
+
+        <h2 class="section-header">Розділ III. Злочини та Покарання</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 8. Основні принципи</span>
+            <p class="clause"><span class="clause-num">8.1.</span> Злочин — це протиправне, винне суспільно небезпечне діяння, заборонене цим Законом та кримінальним законодавством.</p>
+            <p class="clause"><span class="clause-num">8.2.</span> Легітимні покарання спрямовані на відновлення справедливості та виправлення засудженого і не повинні суперечити гуманістичним принципам.</p>
+            <p class="clause"><span class="clause-num">8.3.</span> Ніхто не може бути визнаний винним у вчиненні злочину і підданий кримінальному покаранню інакше як за вироком суду.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 9. Заборона примусового рабства</span>
+            <p class="clause"><span class="clause-num">9.1.</span> Примусове рабство та всі форми експлуатації людини на території Північного Підв'язнова категорично забороняються.</p>
+            <p class="clause"><span class="clause-num">9.2.</span> Ніхто не може бути підданий рабству або примусу до праці, що загрожує людській гідності.</p>
+            <p class="clause"><span class="clause-num">9.5.</span> Захист людської гідності та свободи є вищою цінністю та недоторканним правом кожного громадянина та гостя.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 10. Екологічна відповідальність</span>
+            <p class="clause"><span class="clause-num">10.1.</span> Усі злочини, що завдають шкоди довкіллю, розглядаються як серйозні злочини, що караються відповідно до встановлених законів.</p>
+            <p class="clause"><span class="clause-num">10.2.</span> Злочини, що порушують права майбутніх поколінь на екологічно чисте середовище, підлягають суворому покаранню.</p>
+        </div>
+
+        <h2 class="section-header">Розділ IV. Громадянство та Підданство</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 11. Принципи громадянства</span>
+            <p class="clause"><span class="clause-num">11.1.</span> Громадянство Північного Підв'язнова надається на підставі добровільного вибору, а не за народженням чи походженням.</p>
+            <p class="clause"><span class="clause-num">11.2.</span> Кожен, хто народився на території Князівства, має право на отримання громадянства. Після досягнення 12, а потім 18 років, він має право підтвердити або відмовитися від нього.</p>
+            <p class="clause"><span class="clause-num">11.5.</span> Громадянин Князівства Північне Подв'язново не може бути позбавлений свого громадянства або права змінити його.</p>
+        </div>
+
+        <h2 class="section-header">Розділ V. Законодавча Влада</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 12. Сенат</span>
+            <p class="clause"><span class="clause-num">12.1.</span> Сенат є вищим законодавчим органом Князівства Північне Подв'язново.</p>
+            <p class="clause"><span class="clause-num">12.2.</span> Сенат складається з депутатів, що обираються народом на основі загального, рівного і прямого виборчого права.</p>
+            <p class="clause"><span class="clause-num">12.4.</span> Сенат приймає закони, затверджує бюджет, основні напрямки зовнішньої політики та дає згоду Князю на призначення Канцлера.</p>
+        </div>
+
+        <h2 class="section-header">Розділ VI. Виконавча Влада</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 13. Канцлер</span>
+            <p class="clause"><span class="clause-num">13.1.</span> Канцлер є Главою Уряду Князівства Північне Подв'язново і главою виконавчої влади після Князя.</p>
+            <p class="clause"><span class="clause-num">13.2.</span> Канцлер призначається Князем за схваленням Сенату.</p>
+            <p class="clause"><span class="clause-num">13.5.</span> Основний термін повноважень Канцлера становить шість місяців. Процедура зміщення може бути ініційована Князем або Сенатом.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 14. Уряд Князівства</span>
+            <p class="clause"><span class="clause-num">14.1.</span> Уряд Князівства Північне Подв'язново є вищим виконавчим органом державної влади.</p>
+        </div>
+
+        <h2 class="section-header">Розділ VII. Судова Влада</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 15. Основи судової влади</span>
+            <p class="clause"><span class="clause-num">15.2.</span> Судова влада незалежна і діє на основі принципів справедливості, неупередженості та рівності всіх перед законом.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 16. Конституційний Суд</span>
+            <p class="clause"><span class="clause-num">16.1.</span> Конституційний Суд є вищим судовим органом конституційного контролю.</p>
+        </div>
+
+        <h2 class="section-header">Розділ VIII. Економіка та Фінанси</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 17. Економічні основи</span>
+            <p class="clause"><span class="clause-num">17.1.</span> Економіка базується на принципах ринкової економіки, свободи підприємництва та захисту приватної власності.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 18. Прозорість та відповідальність</span>
+            <p class="clause"><span class="clause-num">18.1.</span> Державні інститути зобов'язані вести відкрите фінансове управління. Інформація про бюджет має бути публічною.</p>
+        </div>
+
+        <h2 class="section-header">Розділ IX. Охорона Природи та Історичної Спадщини</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 20. Історична та культурна спадщина</span>
+            <p class="clause"><span class="clause-num">20.1.</span> Спадщина Князівства охороняється державою. Кожен зобов'язаний дбати про збереження пам'яток історії.</p>
+            <p class="clause"><span class="clause-num">20.3.</span> Особа, яка умисно пошкодила пам'ятку, несе кримінальну, адміністративну та майнову відповідальність.</p>
+        </div>
+
+        <h2 class="section-header">Розділ X. Освіта та Культура</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 23. Казенні мови</span>
+            <p class="clause"><span class="clause-num">23.1.</span> Північне Подв'язново встановлює такі офіційні мови: <br><strong>Російська мова, Французька мова, Іспанська мова, Українська мова.</strong></p>
+            <p class="clause"><span class="clause-num">23.5.</span> Будь-який громадянин має право звертатися до органів влади однією з офіційних мов і отримувати відповідь тією ж мовою.</p>
+        </div>
+
+        <h2 class="section-header">Розділ XI. Заборона Фашизму та Пов'язаних Ідеологій</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 24. Недопустимість екстремістських ідеологій</span>
+            <p class="clause"><span class="clause-num">24.1.</span> Категорично забороняються будь-які форми фашизму, рашизму, націоналістичного шовінізму, расизму та ксенофобії.</p>
+            <p class="clause"><span class="clause-num">24.2.</span> Дані ідеології визнаються загрозою безпеці, свободі та гідності громадян.</p>
+        </div>
+
+        <h2 class="section-header">Розділ XII. Порядок Змін Конституції</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 26. Зміна Конституції</span>
+            <p class="clause"><span class="clause-num">26.2.</span> Поправки до Розділів I, II та XI не можуть бути переглянуті інакше як шляхом прийняття нової Конституції.</p>
+        </div>
+
+        <h2 class="section-header">Розділ XIII. Безпека та Цифровий Суверенітет</h2>
+
+        <div class="article">
+            <span class="article-head">Стаття 29. Захист цифрового суверенітету</span>
+            <p class="clause"><span class="clause-num">29.1.</span> Князівство Північне Подв'язново визнає цифровий суверенітет як ключовий елемент національної безпеки.</p>
+            <p class="clause"><span class="clause-num">29.3.</span> При загрозах кибератак Князь має право тимчасово вводити режим воєнного стану.</p>
+        </div>
+
+        <div class="article">
+            <span class="article-head">Стаття 30. Інші відомства</span>
+            <p class="clause"><span class="clause-num">30.1.</span> Діють Відомство Пильності, Відомство грошей, Відомство земських справ, Служба зовнішньої розвідки та Двір його Князівської Величності.</p>
+        </div>
+
+        <div class="conclusion-block">
+            Ця Конституція є непорушною основою для стабільності та процвітання Північного Підв'язнова, забезпечуючи свободу, справедливість і рівність для кожного громадянина.
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Державний Архів Північного Підв'язнова. Всі права захищені.</p>
+</footer>
+
+</body>
+</html>
