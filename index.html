@@ -3,390 +3,507 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Північне Подв'язново — Офіційний портал</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Офіційний портал | Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gov-blue: #00305e;
-            --gov-red: #d92d20;
-            --gov-black: #000000;
-            --gov-grey: #f3f3f3;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --color-primary: #002395; /* Deep European Blue */
+            --color-accent: #ed2939;  /* Noble Red */
+            --color-text: #1a1a1a;
+            --color-bg-alt: #f6f6f6;
+            --container-width: 1200px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fff;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ШАПКА ТА МЕНЮ --- */
+        /* --- ВЕРХНЯ ПАНЕЛЬ (Top Bar) --- */
+        .top-bar {
+            background: var(--color-primary);
+            color: white;
+            padding: 8px 5%;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- ШАПКА (Header) --- */
         header {
+            padding: 30px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 5%;
-            border-bottom: 3px solid var(--gov-black);
             background: #fff;
+            border-bottom: 1px solid #eee;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .header-left { display: flex; align-items: center; }
-        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
-        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
-        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
-
-        .menu-btn {
-            background: none; border: 2px solid transparent; cursor: pointer;
-            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
-            padding: 8px 15px; transition: var(--transition);
+        .gov-brand {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
-        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
 
-        #menuOverlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 2000; display: none; padding: 50px 10%;
-            animation: fadeIn 0.3s ease; overflow-y: auto;
+        .logo-seal {
+            height: 80px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
-        .close-btn:hover { background: var(--gov-red); }
 
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
-        .menu-list { list-style: none; }
-        .menu-list li { margin-bottom: 12px; }
-        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; }
-        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+        .brand-text {
+            border-left: 2px solid #ddd;
+            padding-left: 25px;
+        }
 
-        /* --- БЛОК 1: ПРЕАМБУЛА --- */
-        .block-preamble {
-            position: relative; height: 600px; display: flex; align-items: center; color: white;
-            background: url('Зображення/main_photo.png') top center/cover;
+        .brand-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            line-height: 1.1;
+            color: var(--color-primary);
+        }
+
+        .brand-text p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* --- НАВІГАЦІЯ --- */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* --- ГЕРОЙ-СЕКЦІЯ (Hero) --- */
+        .hero {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
             padding: 0 10%;
+            max-width: 900px;
         }
-        .block-preamble::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7); z-index: 1;
+
+        .hero-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
         }
-        .preamble-content { position: relative; z-index: 2; max-width: 800px; }
-        .preamble-content h1 { font-size: 2.5rem; margin-bottom: 20px; border-left: 6px solid var(--gov-red); padding-left: 20px; line-height: 1.2; }
 
-        /* --- БЛОК 2: ПРО КНЯЗІВСТВО --- */
-        .block-about { padding: 80px 10%; background: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
-        .btn { padding: 14px 28px; text-decoration: none; font-weight: 700; transition: var(--transition); text-transform: uppercase; font-size: 0.9rem; border: none; cursor: pointer; }
-        .btn-blue { background: var(--gov-blue); color: white; }
-        .btn-red { background: var(--gov-red); color: white; }
+        .hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            border-left: 3px solid var(--color-accent);
+            padding-left: 20px;
+        }
 
-        /* --- БЛОК 3: НОВИНИ --- */
-        .block-news { padding: 80px 10%; background: #fff; }
-        .section-label { color: var(--gov-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 30px; }
-        
+        /* --- СІТКА НОВИН --- */
+        .section-container {
+            padding: 100px 5%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 2px;
+            background: #eee;
+            flex-grow: 1;
+        }
+
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
 
         .news-card {
             text-decoration: none;
             color: inherit;
-            display: flex;
-            flex-direction: column;
+            transition: var(--transition);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
             cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
         }
 
         .news-card img {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 16/10;
             object-fit: cover;
-            margin-bottom: 15px;
-            transition: opacity 0.3s;
+            margin-bottom: 20px;
         }
-        .news-card:hover img { opacity: 0.9; }
 
-        .news-category {
-            color: #006699;
-            font-size: 0.95rem;
-            font-weight: 400;
-            margin-bottom: 8px;
-            display: block;
-            line-height: 1.3;
+        .news-tag {
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .news-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            line-height: 1.2;
-            color: #222;
-            margin: 0;
+            font-size: 1.25rem;
+            margin: 10px 0;
+            line-height: 1.4;
         }
 
-        .show-more-container {
-            margin-top: 50px;
-            border-top: 1px solid #eee;
-            padding-top: 25px;
+        /* --- ПАНЕЛЬ УКАЗІВ --- */
+        .decree-section {
+            background: var(--color-bg-alt);
+            padding: 100px 5%;
         }
 
-        .btn-show-more {
-            background: none;
-            border: none;
-            color: #00305e;
-            font-weight: 600;
+        .decree-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .decree-item {
+            background: #fff;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 4px solid var(--color-primary);
+            transition: var(--transition);
             cursor: pointer;
+        }
+
+        .decree-item:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .decree-meta { font-size: 0.8rem; color: #888; margin-bottom: 10px; }
+        .decree-name { font-weight: 600; font-size: 1.1rem; color: var(--color-primary); }
+
+        /* --- МОДАЛЬНЕ ВІКНО (Quick View) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-window {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 60px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-bg-alt);
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
             display: flex;
             align-items: center;
-            font-size: 1.1rem;
-            transition: 0.2s;
-        }
-        .btn-show-more:hover { color: var(--gov-red); }
-
-        /* --- МОДАЛЬНЕ ВІКНО --- */
-        #newsModal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 3000; display: none;
-            overflow-y: auto; padding: 20px;
-        }
-        .modal-body {
-            background: white; max-width: 900px; margin: 40px auto; 
-            padding: 50px; position: relative; border-radius: 2px;
+            justify-content: center;
+            transition: var(--transition);
         }
 
-        /* --- УКАЗИ --- */
-        .block-decrees { padding: 80px 10%; background: var(--gov-grey); }
-        .decree-item { 
-            display: flex; justify-content: space-between; padding: 20px; 
-            border-bottom: 1px solid #ddd; transition: 0.2s; background: white; margin-bottom: 5px;
-            cursor: pointer;
+        .modal-close:hover {
+            background: var(--color-accent);
+            color: white;
         }
-        .decree-item:hover { border-left: 5px solid var(--gov-red); padding-left: 25px; }
-        .decree-title { font-weight: 600; color: #222; }
-        .decree-date { color: #666; font-size: 0.9rem; }
 
-        footer { padding: 40px 10%; background: var(--gov-black); color: white; text-align: center; }
+        .modal-content-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        /* --- ФУТЕР --- */
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 80px 5% 40px;
+        }
+
+        .footer-grid {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; }
+        .footer-links h4 { margin-bottom: 20px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: #888; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #ccc; text-decoration: none; font-size: 0.9rem; }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 1024px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content h2 { font-size: 2.5rem; }
+        }
 
         @media (max-width: 768px) {
-            .block-about { grid-template-columns: 1fr; }
-            .news-grid { grid-template-columns: 1fr; }
-            .modal-body { padding: 25px; }
-            .decree-item { flex-direction: column; gap: 5px; }
+            header { flex-direction: column; gap: 20px; }
+            .news-grid, .decree-list, .footer-grid { grid-template-columns: 1fr; }
+            .gov-brand { flex-direction: column; text-align: center; }
+            .brand-text { border: none; padding: 0; }
+            .modal-window { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-<div id="menuOverlay">
-    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
-    <div class="menu-grid">
-        <div class="menu-section">
-            <h3>Держава</h3>
-            <ul class="menu-list">
-                <li><a href="index.html">Головна сторінка</a></li>
-                <li><a href="about.html">Про державу</a></li>
-                <li><a href="constitution.html">Конституція</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Канцлер</h3>
-            <ul class="menu-list">
-                <li><a href="kantsler.html">Відомство Канцлера</a></li>
-                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
-                <li><a href="groshey.html">Відомство Грошей</a></li>
-                <li><a href="sprav.html">Відомство Земських справ</a></li>
-                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
-                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
-                <li><a href="FASDN.html">FASDN</a></li>
-                <li><a href="APDPN.html">APDPN</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Громадянам</h3>
-            <ul class="menu-list">
-                <li><a href="#">Титули та жалування</a></li>
-                <li><a href="#">Підданство</a></li>
-            </ul>
-        </div>
+    <div class="top-bar">
+        <span>Офіційний сайт державного управління</span>
+        <span>20 Січня, 2026</span>
     </div>
-</div>
 
-<header>
-    <div class="header-left">
-        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
-        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
-    </div>
-    <button class="menu-btn" onclick="toggleMenu()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <span style="margin-left:10px">МЕНЮ</span>
-    </button>
-</header>
-
-<section class="block-preamble">
-    <div class="preamble-content">
-        <h1>Преамбула</h1>
-        <p>Ми, вільні народи незалежного державного утворення Північне Подв'язново, на виконання природного права народів володіти самовизначенням, утверджуючи цю Преамбулу як вираження волі наших громадян, беремо до уваги давні традиції, історію та культуру народу Північного Подв'язнова і утверджуємо право на монархічне управління, в якому керівником нашої держави є цар (князь) Михайло I. Підтверджуючи прагнення до миру та справедливості, ми утверджуємо себе як суверенну державу, готову до співпраці та взаємовигідних відносин з іншими державами відповідно до принципів нашої конституції.</p>
-    </div>
-</section>
-
-<section class="block-about">
-    <div class="about-text">
-        <h2>Державний устрій</h2>
-        <p><strong>Північне Подв'язново</strong> — державне утворення на чолі з князем Михайлом I.</p>
-        <div class="btn-group">
-            <a href="constitution.html" class="btn btn-blue">Конституція держави</a>
-            <a href="bditelnosti.html" class="btn btn-red">Відомство Бдітєльності</a>
-        </div>
-    </div>
-    <div style="text-align: right;">
-        <img src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?q=80&w=500" alt="Документ" style="width: 100%; max-width: 400px; border-radius: 2px; filter: grayscale(1);">
-    </div>
-</section>
-
-<section class="block-news">
-    <span class="section-label">Новини</span>
-    <div id="news-container" class="news-grid"></div>
-    
-    <div class="show-more-container">
-        <button id="load-more-btn" class="btn-show-more" onclick="showMoreNews()">
-            <span style="font-size: 24px; margin-right: 12px; font-weight: 300;">+</span> показати більше
-        </button>
-    </div>
-</section>
-
-<section class="block-decrees">
-    <h2 style="margin-bottom: 30px; text-transform: uppercase; color: var(--gov-blue);">Дошка указів князя</h2>
-    <div id="decrees-container">
-        </div>
-</section>
-
-<div id="newsModal">
-    <div class="modal-body">
-        <button onclick="closeNews()" style="position:absolute; top:30px; right:30px; border:none; background:var(--gov-red); color:white; padding:10px 20px; cursor:pointer; font-weight:bold;">✕ ЗАКРИТИ</button>
-        <div id="modalContent"></div>
-    </div>
-</div>
-
-<footer>
-    <p>&copy; 2026 Князівство Північне Подв'язново. Всі права захищені.</p>
-</footer>
-
-<script>
-    // --- МЕНЮ ---
-    function toggleMenu() {
-        const menu = document.getElementById('menuOverlay');
-        const isVisible = menu.style.display === 'block';
-        menu.style.display = isVisible ? 'none' : 'block';
-        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
-    }
-
-    // --- ЛОГІКА НОВИН ---
-    let currentLimit = 2;
-    let allNewsData = [];
-
-    async function loadNews() {
-        try {
-            const response = await fetch('news.json');
-            allNewsData = await response.json();
-            renderNews();
-        } catch (error) {
-            console.error("Помилка завантаження news.json:", error);
-        }
-    }
-
-    function renderNews() {
-        const container = document.getElementById('news-container');
-        const visibleNews = allNewsData.slice(0, currentLimit);
-        
-        container.innerHTML = visibleNews.map(item => `
-            <div class="news-card" onclick="openNews(${item.id})">
-                ${item.image ? `<img src="${item.image}" alt="">` : ''}
-                <div class="news-body">
-                    <span class="news-category">${item.category}</span>
-                    <h3>«${item.title}»</h3>
-                </div>
+    <header>
+        <div class="gov-brand">
+            <img src="Зображення/герб.png" alt="Seal" class="logo-seal">
+            <div class="brand-text">
+                <h1>Канцелярія Князя</h1>
+                <p>Північне Подв'язново</p>
             </div>
-        `).join('');
+        </div>
+        <nav>
+            <ul>
+                <li><a href="about.html">Держава</a></li>
+                <li><a href="kantsler.html">Уряд</a></li>
+                <li><a href="constitution.html">Законодавство</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        if (currentLimit >= allNewsData.length) {
-            document.querySelector('.show-more-container').style.display = 'none';
-        }
-    }
+    <section class="hero">
+        <img src="Зображення/main_photo.png" alt="Palace" class="hero-img">
+        <div class="hero-content">
+            <h2>Спадкоємність, <br>Право, Справедливість.</h2>
+            <p>Ми утверджуємо суверенітет Північного Подв'язнова, опираючись на волю народу та багатовікові традиції державотворення під проводом Його Світлості Князя Михайла I.</p>
+        </div>
+    </section>
 
-    function showMoreNews() {
-        currentLimit += 2;
-        renderNews();
-    }
+    <main class="section-container">
+        <h2 class="section-title">Останні новини</h2>
+        <div id="news-container" class="news-grid">
+            </div>
+    </main>
 
-    function openNews(id) {
-        const item = allNewsData.find(n => n.id === id);
-        const modal = document.getElementById('newsModal');
-        const content = document.getElementById('modalContent');
-        
-        content.innerHTML = `
-            <span style="color:#006699; font-weight:600; text-transform:uppercase; font-size:0.9rem;">${item.category}</span>
-            <h2 style="margin:15px 0; font-size:2.5rem; line-height:1.1;">«${item.title}»</h2>
-            <p style="color:#888; margin-bottom:30px;">Опубліковано: ${item.date}</p>
-            ${item.image ? `<img src="${item.image}" style="width:100%; margin-bottom:30px; border-radius:2px;">` : ''}
-            <div style="font-size:1.2rem; line-height:1.8; color:#333; white-space: pre-wrap;">${item.fullText}</div>
-        `;
-        
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-
-    // --- ЛОГІКА УКАЗІВ ---
-    async function loadDecrees() {
-        try {
-            const response = await fetch('decrees.json');
-            const decreesData = await response.json();
-            const container = document.getElementById('decrees-container');
-            
-            container.innerHTML = decreesData.map(decree => `
-                <div class="decree-item" onclick="openDecree(${decree.id})">
-                    <span class="decree-title">${decree.title}</span>
-                    <span class="decree-date">${decree.date}</span>
+    <section class="decree-section">
+        <div class="section-container">
+            <h2 class="section-title">Нормативні акти та укази</h2>
+            <div id="decrees-container" class="decree-list">
                 </div>
-            `).join('');
+        </div>
+    </section>
 
-            window.allDecrees = decreesData;
-        } catch (error) {
-            console.error("Помилка завантаження указів:", error);
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h2>Князівство <br>Північне Подв'язново</h2>
+                <p style="color: #888;">Офіційне представництво державної влади в інформаційній мережі.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Інституції</h4>
+                <ul>
+                    <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
+                    <li><a href="groshey.html">Відомство Грошей</a></li>
+                    <li><a href="naval.html">Морський Флот</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Сервіси</h4>
+                <ul>
+                    <li><a href="#">Електронні петиції</a></li>
+                    <li><a href="#">Державний реєстр</a></li>
+                    <li><a href="#">Преса</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Канцелярія Князя Північного Подв'язнова. Всі права захищені.
+        </div>
+    </footer>
+
+    <div id="newsModal" class="modal-overlay" onclick="closeNews()">
+        <div class="modal-window" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeNews()">×</button>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // Глобальні змінні для збереження даних
+        window.allNewsData = [];
+        window.allDecrees = [];
+
+        // Функція для відкриття новини
+        function openNews(id) {
+            const item = window.allNewsData.find(n => n.id === id);
+            if (!item) return;
+
+            const modal = document.getElementById('newsModal');
+            const content = document.getElementById('modal-body');
+
+            content.innerHTML = `
+                <span class="news-tag">${item.category}</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 15px 0;">${item.title}</h2>
+                <p style="color: #666; margin-bottom: 30px;">Опубліковано: ${item.date}</p>
+                ${item.image ? `<img src="${item.image}" style="width: 100%; margin-bottom: 30px; border-radius: 2px;">` : ''}
+                <div class="modal-content-text">${item.fullText}</div>
+            `;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-    }
 
-    function openDecree(id) {
-        const decree = window.allDecrees.find(d => d.id === id);
-        const modal = document.getElementById('newsModal');
-        const content = document.getElementById('modalContent');
-        
-        content.innerHTML = `
-            <span style="color:var(--gov-red); font-weight:700; text-transform:uppercase; letter-spacing:1px;">Офіційний указ</span>
-            <h2 style="margin:15px 0; font-size:2rem; line-height:1.2;">${decree.title}</h2>
-            <p style="color:#666;">Дата видання: ${decree.date}</p>
-            <hr style="margin:20px 0; border:0; border-top:2px solid var(--gov-black);">
-            <div style="font-size:1.15rem; line-height:1.8; white-space: pre-wrap; font-family: 'Times New Roman', serif; color:#111;">${decree.fullText}</div>
-        `;
-        
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
+        // Функція для відкриття указу
+        function openDecree(id) {
+            const decree = window.allDecrees.find(d => d.id === id);
+            if (!decree) return;
 
-    function closeNews() {
-        document.getElementById('newsModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
+            const modal = document.getElementById('newsModal');
+            const content = document.getElementById('modal-body');
 
-    // СТАРТ
-    window.onload = () => {
-        loadNews();
-        loadDecrees();
-    };
-</script>
+            content.innerHTML = `
+                <span style="color: var(--color-accent); font-weight: 700; text-transform: uppercase;">Офіційний указ №${decree.id}</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 15px 0;">${decree.title}</h2>
+                <p style="color: #666;">Дата видання: ${decree.date}</p>
+                <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+                <div class="modal-content-text" style="font-family: 'Times New Roman', serif;">${decree.fullText}</div>
+            `;
 
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNews() {
+            document.getElementById('newsModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Завантаження контенту з JSON
+        async function loadContent() {
+            try {
+                // Новини
+                const newsRes = await fetch('news.json');
+                window.allNewsData = await newsRes.json();
+                document.getElementById('news-container').innerHTML = window.allNewsData.slice(0, 3).map(item => `
+                    <div class="news-card" onclick="openNews(${item.id})">
+                        <img src="${item.image || 'https://via.placeholder.com/600x400'}" alt="">
+                        <span class="news-tag">${item.category}</span>
+                        <h3>${item.title}</h3>
+                        <p style="font-size:0.85rem; color:#666;">${item.date}</p>
+                    </div>
+                `).join('');
+
+                // Укази
+                const decreeRes = await fetch('decrees.json');
+                window.allDecrees = await decreeRes.json();
+                document.getElementById('decrees-container').innerHTML = window.allDecrees.slice(0, 4).map(d => `
+                    <div class="decree-item" onclick="openDecree(${d.id})">
+                        <div class="decree-meta">${d.date} • Указ №00${d.id}</div>
+                        <div class="decree-name">${d.title}</div>
+                    </div>
+                `).join('');
+                
+            } catch (e) { 
+                console.error("Помилка завантаження даних:", e); 
+            }
+        }
+
+        // Закриття модалки клавішею Esc
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeNews();
+        });
+
+        window.onload = loadContent;
+    </script>
 </body>
 </html>

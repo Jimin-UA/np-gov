@@ -3,250 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Про державу — Північне Подв'язново</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Про державу | Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gov-blue: #00305e;
-            --gov-red: #d92d20;
-            --gov-black: #000000;
-            --gov-grey: #f3f3f3;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --color-primary: #002395; /* Deep European Blue */
+            --color-accent: #ed2939;  /* Noble Red */
+            --color-text: #1a1a1a;
+            --color-bg-alt: #f6f6f6;
+            --container-width: 1200px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fff;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ШАПКА ТА МЕНЮ (КОПІЯ З INDEX.HTML) --- */
+        /* --- ВЕРХНЯ ПАНЕЛЬ (Top Bar) --- */
+        .top-bar {
+            background: var(--color-primary);
+            color: white;
+            padding: 8px 5%;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- ШАПКА (Header) --- */
         header {
+            padding: 20px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 5%;
-            border-bottom: 3px solid var(--gov-black);
             background: #fff;
+            border-bottom: 1px solid #eee;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
-        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
-        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
-        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        .gov-brand {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            text-decoration: none;
+        }
+
+        .logo-seal {
+            height: 60px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .brand-text {
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+
+        .brand-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            line-height: 1.1;
+            color: var(--color-primary);
+        }
 
         .menu-btn {
-            background: none; border: 2px solid transparent; cursor: pointer;
-            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
-            padding: 8px 15px; transition: var(--transition);
+            background: none;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
         }
-        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
 
-        #menuOverlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 2000; display: none; padding: 50px 10%;
-            animation: fadeIn 0.3s ease; overflow-y: auto;
-        }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
-        .close-btn:hover { background: var(--gov-red); }
-
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
-        .menu-list { list-style: none; }
-        .menu-list li { margin-bottom: 12px; }
-        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; }
-        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+        .menu-btn:hover { background: var(--color-bg-alt); }
 
         /* --- КОНТЕНТ СТОРІНКИ --- */
         .page-header {
-            padding: 60px 10% 40px;
-            background: var(--gov-grey);
-            border-bottom: 1px solid #ddd;
+            padding: 80px 5% 60px;
+            background: var(--color-bg-alt);
+            text-align: center;
         }
-        .page-header h1 { font-size: 3rem; color: var(--gov-black); line-height: 1.1; max-width: 800px; }
-        .breadcrumb { text-transform: uppercase; font-size: 0.8rem; font-weight: 700; color: var(--gov-red); margin-bottom: 20px; display: block; }
 
-        .main-content { padding: 80px 10%; }
+        .breadcrumb {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--color-text);
+            line-height: 1.1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            padding: 100px 5%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
         
+        /* Блоки з описом */
         .feature-block {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            margin-bottom: 100px;
-            align-items: start;
+            margin-bottom: 120px;
+            align-items: center;
         }
-        .feature-text h2 { font-size: 2.2rem; margin-bottom: 25px; border-top: 4px solid var(--gov-black); padding-top: 20px; }
-        .feature-text p { font-size: 1.15rem; margin-bottom: 20px; color: #444; text-align: justify; }
-        .feature-image img { width: 100%; box-shadow: 20px 20px 0px var(--gov-grey); }
 
-        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #ddd; margin: 60px 0; border: 1px solid #ddd; }
-        .info-card { background: white; padding: 40px; }
-        .info-card h3 { color: var(--gov-red); font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; }
+        .feature-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--color-primary);
+        }
 
-        .agency-section { margin-top: 100px; }
-        .agency-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
-        .agency-table tr { border-bottom: 1px solid #eee; }
-        .agency-table td { padding: 25px 0; vertical-align: top; }
-        .agency-table .name { font-weight: 700; color: var(--gov-blue); width: 30%; font-size: 1.1rem; }
-        .agency-table .desc { color: #555; }
+        .feature-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
 
-        footer { padding: 60px 10%; background: var(--gov-black); color: white; text-align: center; }
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
 
+        /* Інфо-картки */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 40px;
+            border: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Таблиця відомств */
+        .agency-section { margin-top: 120px; }
+        .agency-section h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
+        
+        .agency-table { width: 100%; border-collapse: collapse; }
+        .agency-table tr { border-bottom: 1px solid #eee; transition: background 0.2s; }
+        .agency-table tr:hover { background: #fafafa; }
+        .agency-table td { padding: 30px 20px; vertical-align: middle; }
+        
+        .agency-table .name { 
+            font-weight: 700; 
+            color: var(--color-primary); 
+            width: 30%; 
+            font-size: 1.1rem; 
+        }
+        
+        .agency-table .desc { color: #555; font-size: 1rem; }
+
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 100px;
+        }
+
+        /* Адаптивність */
         @media (max-width: 1024px) {
-            .feature-block { grid-template-columns: 1fr; gap: 40px; }
+            .feature-block { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .feature-block:nth-child(even) { direction: ltr; }
             .info-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-<div id="menuOverlay">
-    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
-    <div class="menu-grid">
-        <div class="menu-section">
-            <h3>Держава</h3>
-            <ul class="menu-list">
-                <li><a href="index.html">Головна сторінка</a></li>
-                <li><a href="about.html">Про державу</a></li>
-                <li><a href="constitution.html">Конституція</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Канцлер</h3>
-            <ul class="menu-list">
-                <li><a href="kantsler.html">Відомство Канцлера</a></li>
-                <li><a href="bditelnosti.html">Відомство Бдітєльності</a></li>
-                <li><a href="groshey.html">Відомство Грошей</a></li>
-                <li><a href="sprav.html">Відомство Земських справ</a></li>
-                <li><a href="rosvidka.html">Служба Зовнішньої Розвідки</a></li>
-                <li><a href="naval.html">Флот Північного Підв'язнова</a></li>
-                <li><a href="FASDN.html">FASDN</a></li>
-                <li><a href="APDPN.html">APDPN</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Громадянам</h3>
-            <ul class="menu-list">
-                <li><a href="#">Титули та жалування</a></li>
-                <li><a href="#">Підданство</a></li>
-            </ul>
-        </div>
+    <div class="top-bar">
+        <span>Офіційний інформаційний портал</span>
+        <span>Державний суверенітет та право</span>
     </div>
-</div>
 
-<header>
-    <a href="index.html" class="header-left">
-        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
-        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
-    </a>
-    <button class="menu-btn" onclick="toggleMenu()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <span style="margin-left:10px">МЕНЮ</span>
-    </button>
-</header>
+    <header>
+        <a href="index.html" class="gov-brand">
+            <img src="Зображення/герб.png" alt="Seal" class="logo-seal">
+            <div class="brand-text">
+                <h1>Канцелярія Князя</h1>
+                <p style="font-size: 0.7rem; text-transform: uppercase; color: #666;">Північне Подв'язново</p>
+            </div>
+        </a>
+        <button class="menu-btn" onclick="window.location.href='index.html'">
+            ← НА ГОЛОВНУ
+        </button>
+    </header>
 
-<main>
-    <section class="page-header">
-        <span class="breadcrumb">Держава / Про князівство</span>
-        <h1>Північне Підв'язнове — князівство миру та демократії</h1>
-    </section>
-
-    <div class="main-content">
-        <div class="feature-block">
-            <div class="feature-text">
-                <h2>Історія та заснування</h2>
-                <p>Князівство Північне Підв'язнове було засноване 8 липня 2024 року. У державі діє унікальний власний календар, за яким зараз триває 1925-й рік.</p>
-                <p>Ідея створення князівства зародилася задовго до офіційної основи: саме 8 липня було видано перший указ про заснування столиці — Петрополіса. Цей указ став фактичним початком державного суверенітету та самостійності Північного Підв'язнова.</p>
-            </div>
-            <div class="feature-image">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800" alt="Петрополіс">
-            </div>
-        </div>
-
-        <div class="feature-block" style="direction: rtl;">
-            <div class="feature-text" style="direction: ltr;">
-                <h2>Географія та приватність</h2>
-                <p>Князівство — місце з неповторною атмосферою, що нагадує м'який шарм французьких та італійських пейзажів. Фортеця Самофалових, оповита лозами, стала символом нашої історії.</p>
-                <p>З міркувань безпеки точне розташування резиденції залишається в таємниці. Північне Підв'язново розташоване в Московській області і категорично не визнає легітимність сучасної Російської Федерації.</p>
-            </div>
-            <div class="feature-image">
-                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&w=800" alt="Природа">
-            </div>
-        </div>
-
-        <div class="feature-block">
-            <div class="feature-text">
-                <h2>Державний устрій</h2>
-                <p>Главою князівства є <strong>Князь Михайло I</strong>. Виконавчу владу очолює Канцлер. Наша політична система базується на принципах лібералізму та демократії.</p>
-                <p>Ми активно підтримуємо ідеї Європейського союзу. Якщо Князь уособлює консервативні традиції, то Канцлер є символом свободи та прогресу.</p>
-            </div>
-            <div class="feature-image">
-                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=800" alt="Влада">
-            </div>
-        </div>
-
-        <h2 style="font-size: 2rem; margin-top: 40px;">Економіка та підданство</h2>
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>Білогрівна</h3>
-                <p>Офіційний засіб розрахунку всередині держави. Ми не використовуємо традиційні валюти.</p>
-            </div>
-            <div class="info-card">
-                <h3>Цифрове право</h3>
-                <p>Громадянство надається виключно у цифровій формі — це найбезпечніший спосіб ідентифікації.</p>
-            </div>
-            <div class="info-card">
-                <h3>Дворянство</h3>
-                <p>Інститут дворянства зберігається. Титули надаються лише за особливі заслуги перед короною.</p>
-            </div>
-        </div>
-
-        <section class="agency-section">
-            <h2>Державні відомства</h2>
-            <table class="agency-table">
-                <tr>
-                    <td class="name">Відомство Пильності</td>
-                    <td class="desc">Внутрішня безпека та повний цифровий захист інтересів громадян.</td>
-                </tr>
-                <tr>
-                    <td class="name">Відомство Грошей</td>
-                    <td class="desc">Управління економікою, фінансовими потоками та курсом Білогрівни.</td>
-                </tr>
-                <tr>
-                    <td class="name">Служба Розвідки</td>
-                    <td class="desc">Захист інтересів князівства на міжнародній арені та за його кордонами.</td>
-                </tr>
-                <tr>
-                    <td class="name">Військово-Морський Флот</td>
-                    <td class="desc">Головний гарант обороноздатності та безпеки на морських рубежах.</td>
-                </tr>
-                <tr>
-                    <td class="name">Двір Князя</td>
-                    <td class="desc">Адміністративний центр, що відповідає за державний протокол та зв'язки.</td>
-                </tr>
-            </table>
+    <main>
+        <section class="page-header">
+            <span class="breadcrumb">Держава / Про князівство</span>
+            <h1>Мир, традиція та цифровий прогрес</h1>
         </section>
-    </div>
-</main>
 
-<footer>
-    <p>&copy; 2026 Князівство Північне Подв'язново. Всі права захищені.</p>
-</footer>
+        <div class="main-content">
+            <div class="feature-block">
+                <div class="feature-text">
+                    <h2>Історія та заснування</h2>
+                    <p>Князівство Північне Підв'язнове було засноване 8 липня 2024 року. У державі діє унікальний власний календар, за яким зараз триває 1925-й рік.</p>
+                    <p>Ідея створення князівства зародилася задовго до офіційної основи: саме 8 липня було видано перший указ про заснування столиці — Петрополіса. Цей документ став фундаментом нашої самостійності.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="Зображення/about_1.jpg" alt="Історія">
+                </div>
+            </div>
 
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById('menuOverlay');
-        const isVisible = menu.style.display === 'block';
-        menu.style.display = isVisible ? 'none' : 'block';
-        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
-    }
-</script>
+            <div class="feature-block" style="direction: rtl;">
+                <div class="feature-text" style="direction: ltr;">
+                    <h2>Географія та приватність</h2>
+                    <p>Князівство — місце з неповторною атмосферою, що нагадує м'який шарм європейських пейзажів. Фортеця Самофалових, оповита лозами, стала символом нашої стійкості.</p>
+                    <p>З міркувань безпеки точне розташування резиденції залишається в таємниці. Ми територіально незалежні та будуємо власну правову систему, вільну від зовнішнього впливу.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="Зображення/about_2.png" alt="Географія">
+                </div>
+            </div>
+
+            <div class="feature-block">
+                <div class="feature-text">
+                    <h2>Державний устрій</h2>
+                    <p>Главою князівства є <strong>Князь Михайло I</strong>. Виконавчу владу очолює Канцлер. Наша політична система базується на принципах ліберальної демократії.</p>
+                    <p>Ми поєднуємо повагу до традицій монархії із сучасними ідеями свободи та соціального прогресу, орієнтуючись на стандарти Європейського союзу.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="Зображення/about_3.png" alt="Влада">
+                </div>
+            </div>
+
+            <div class="feature-block" style="direction: rtl;">
+                <div class="feature-text" style="direction: ltr;">
+                    <h2>Цифрова держава</h2>
+                    <p>Ми будуємо суспільство майбутнього, де цифрові технології захищають права громадян. Наша мета — повна автоматизація державних процесів для зручності кожного підданого.</p>
+                </div>
+                <div class="feature-image">
+                    <img src="Зображення/about_4.png" alt="Прогрес">
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Білогрівна</h3>
+                    <p>Унікальна внутрішня валюта, що забезпечує економічну стабільність та незалежність князівства.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Цифрове право</h3>
+                    <p>Ідентифікація та громадянство надаються у цифровому форматі через захищені протоколи.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Дворянство</h3>
+                    <p>Збереження інституту титулів як нагороди за видатні досягнення в науці, мистецтві чи службі.</p>
+                </div>
+            </div>
+
+            <section class="agency-section">
+                <h2>Державні відомства</h2>
+                <table class="agency-table">
+                    <tr>
+                        <td class="name">Відомство Пильності</td>
+                        <td class="desc">Забезпечення внутрішнього правопорядку та кібербезпеки.</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Відомство Грошей</td>
+                        <td class="desc">Монетарна політика та управління курсом Білогрівни.</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Служба Розвідки</td>
+                        <td class="desc">Зовнішня безпека та міжнародне представництво.</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Військово-Морський Флот</td>
+                        <td class="desc">Оборона суверенітету на водних рубежах князівства.</td>
+                    </tr>
+                    <tr>
+                        <td class="name">Двір Князя</td>
+                        <td class="desc">Протокольна служба та координація роботи Канцелярії.</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Князівство Північне Подв'язново. Офіційне представництво.</p>
+    </footer>
 
 </body>
 </html>

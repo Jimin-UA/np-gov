@@ -3,254 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Канцлер — Північне Подв'язново</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <title>Канцлер | Північне Подв'язново</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gov-blue: #00305e;
-            --gov-red: #d92d20;
-            --gov-black: #000000;
-            --gov-grey: #f3f3f3;
-            --party-purple: #2e0854; /* Колір ДПНП зі скріншоту */
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --color-primary: #002395; /* Deep European Blue */
+            --color-accent: #ed2939;  /* Noble Red */
+            --color-text: #1a1a1a;
+            --color-bg-alt: #f6f6f6;
+            --party-purple: #2e0854;
+            --container-width: 1200px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fff;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ШАПКА ТА МЕНЮ (УНІФІКОВАНО) --- */
-        header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 15px 5%; border-bottom: 3px solid var(--gov-black);
-            background: #fff; position: sticky; top: 0; z-index: 1000;
+        /* --- ВЕРХНЯ ПАНЕЛЬ --- */
+        .top-bar {
+            background: var(--color-primary);
+            color: white;
+            padding: 8px 5%;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
         }
-        .header-left { display: flex; align-items: center; text-decoration: none; color: inherit; }
-        .logo-box img { height: 65px; margin-right: 20px; border-right: 1px solid #ddd; padding-right: 20px; }
-        .header-title { font-weight: 700; text-transform: uppercase; font-size: 0.95rem; }
-        .header-title span { color: var(--gov-red); font-size: 0.8rem; font-weight: 400; }
+
+        /* --- ШАПКА --- */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .gov-brand {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            text-decoration: none;
+        }
+
+        .logo-seal {
+            height: 60px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .brand-text {
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+
+        .brand-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            line-height: 1.1;
+            color: var(--color-primary);
+        }
 
         .menu-btn {
-            background: none; border: 2px solid transparent; cursor: pointer;
-            display: flex; align-items: center; font-weight: 700; color: var(--gov-blue);
-            padding: 8px 15px; transition: var(--transition);
+            background: none;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
         }
-        .menu-btn:hover { color: var(--gov-red); border-color: var(--gov-red); }
 
-        #menuOverlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 2000; display: none; padding: 50px 10%;
-            animation: fadeIn 0.3s ease; overflow-y: auto;
-        }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .close-btn { background: var(--gov-black); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
-        
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
-        .menu-section h3 { color: var(--gov-blue); border-bottom: 2px solid var(--gov-red); padding-bottom: 10px; margin-bottom: 15px; text-transform: uppercase; }
-        .menu-list { list-style: none; }
-        .menu-list a { text-decoration: none; color: #000; transition: 0.2s; display: block; margin-bottom: 12px; }
-        .menu-list a:hover { color: var(--gov-red); padding-left: 8px; }
+        .menu-btn:hover { background: var(--color-bg-alt); }
 
-        /* --- ПЕРШИЙ БЛОК: КАНЦЛЕР (ІНТЕГРОВАНО) --- */
+        /* --- ГЕРОЙ-СЕКЦІЯ КАНЦЛЕРА --- */
         .chancellor-hero {
-            height: 85vh;
-            background-image: url('https://i.postimg.cc/15btk2GF/Gemini-Generated-Image-2tuut2tuut2tuut2.png');
+            height: 80vh;
+            background: #fff url('https://i.postimg.cc/15btk2GF/Gemini-Generated-Image-2tuut2tuut2tuut2.png') no-repeat left bottom;
             background-size: contain;
-            background-position: left bottom;
-            background-repeat: no-repeat;
             display: flex;
             justify-content: flex-end;
             align-items: center;
             position: relative;
-            overflow: hidden;
-            background-color: #fff;
         }
 
         .chancellor-hero::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,1) 60%);
-            z-index: 1;
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, #fff 70%);
         }
 
         .hero-content {
-            position: relative; z-index: 2; width: 45%; padding: 40px;
-            font-family: 'Instrument Serif', serif; color: #000;
-        }
-        .hero-content h1 { font-size: 3.5rem; font-weight: 400; margin-bottom: 20px; }
-        .hero-content p { font-size: 1.4rem; line-height: 1.4; margin-bottom: 20px; }
-        .hero-content .quote { font-style: italic; text-align: right; font-size: 1.8rem; margin-top: 30px; }
-
-        /* --- ДРУГИЙ БЛОК: ОПИС ТА ПАРТІЯ --- */
-        .description-block { padding: 60px 10%; text-align: center; max-width: 1000px; margin: 0 auto; }
-        .chancellor-name { color: var(--party-purple); font-size: 2.5rem; font-weight: 600; margin-bottom: 20px; }
-        .chancellor-intro { font-size: 1.2rem; color: #444; margin-bottom: 60px; }
-
-        .party-box { text-align: left; border-top: 1px solid #eee; padding-top: 60px; }
-        .party-logo { 
-            background: var(--party-purple); color: white; display: inline-block; 
-            padding: 10px 40px; font-size: 3rem; font-weight: 800; letter-spacing: 5px; margin-bottom: 20px;
-        }
-        .party-title { font-size: 1.2rem; margin-bottom: 30px; }
-        .party-title strong { color: var(--party-purple); }
-
-        .beliefs-list { list-style: none; margin-top: 30px; }
-        .beliefs-list li { 
-            margin-bottom: 20px; padding-left: 30px; position: relative; font-size: 1.1rem; 
-        }
-        .beliefs-list li::before { 
-            content: "—"; position: absolute; left: 0; color: var(--party-purple); font-weight: bold; 
+            position: relative;
+            z-index: 10;
+            width: 50%;
+            padding-right: 10%;
         }
 
-        /* --- УКАЗИ --- */
-        .decrees-section { padding: 80px 10%; background: #fff; }
-        .decrees-section h2 { font-size: 2rem; color: var(--gov-blue); margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .decree-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        .decree-thumb { 
-            background: #f9f9f9; border: 1px solid #ddd; padding: 10px; transition: var(--transition); cursor: pointer;
+        .hero-content h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 20px;
         }
-        .decree-thumb:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .decree-thumb img { width: 100%; height: auto; border: 1px solid #eee; }
-        .decree-thumb span { display: block; text-align: center; font-size: 0.8rem; margin-top: 10px; color: #666; }
 
-        footer { padding: 40px 10%; background: var(--gov-black); color: white; text-align: center; }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #444;
+            max-width: 500px;
+        }
 
+        .quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        /* --- ОПИС ТА ПАРТІЯ --- */
+        .description-block {
+            padding: 100px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .chancellor-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--party-purple);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .party-box {
+            margin-top: 80px;
+            padding: 40px;
+            background: var(--color-bg-alt);
+            border-radius: 4px;
+        }
+
+        .party-logo {
+            background: var(--party-purple);
+            color: white;
+            display: inline-block;
+            padding: 5px 25px;
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .beliefs-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .beliefs-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 15px;
+        }
+
+        .beliefs-list li::before {
+            content: "•";
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* --- СЕКЦІЯ УКАЗІВ (Grid) --- */
+        .decrees-section {
+            padding: 100px 5%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--color-primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .decree-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .decree-thumb {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .decree-thumb:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .decree-thumb img { width: 100%; height: auto; border: 1px solid #f0f0f0; margin-bottom: 15px; }
+        .decree-thumb span { font-size: 0.85rem; font-weight: 600; color: var(--color-primary); }
+
+        /* --- МОДАЛЬНЕ ВІКНО --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-window {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 60px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: #f0f0f0;
+            border: none; width: 40px; height: 40px;
+            cursor: pointer; font-size: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* --- ФУТЕР --- */
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивність */
         @media (max-width: 1024px) {
-            .chancellor-hero { background-position: center bottom; background-size: cover; height: auto; padding: 100px 5%; }
+            .chancellor-hero { background-position: center; height: auto; padding: 100px 5%; }
             .chancellor-hero::before { background: rgba(255,255,255,0.85); }
-            .hero-content { width: 100%; text-align: center; padding: 20px; }
-            .hero-content .quote { text-align: center; }
+            .hero-content { width: 100%; padding: 0; text-align: center; }
+            .decree-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-<div id="menuOverlay">
-    <button class="close-btn" onclick="toggleMenu()">✕ ЗАКРИТИ МЕНЮ</button>
-    <div class="menu-grid">
-        <div class="menu-section">
-            <h3>Держава</h3>
-            <ul class="menu-list">
-                <li><a href="index.html">Головна сторінка</a></li>
-                <li><a href="about.html">Про державу</a></li>
-                <li><a href="#">Конституція</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Канцлер</h3>
-            <ul class="menu-list">
-                <li><a href="#">Відомство Бдітєльності</a></li>
-                <li><a href="#">Відомство Грошей</a></li>
-                <li><a href="#">Двір його Князівської Величності</a></li>
-                <li><a href="#">Відомство Земських справ</a></li>
-                <li><a href="#">Служба Зовнішньої Розвідки</a></li>
-                <li><a href="#">Флот Північного Підв'язнова</a></li>
-            </ul>
-        </div>
-        <div class="menu-section">
-            <h3>Громадянам</h3>
-            <ul class="menu-list">
-                <li><a href="#">Титули та жалування</a></li>
-                <li><a href="#">Підданство</a></li>
-            </ul>
+    <div class="top-bar">
+        <span>Офіційний сайт державного управління</span>
+        <span>Канцелярія Канцлера</span>
+    </div>
+
+    <header>
+        <a href="index.html" class="gov-brand">
+            <img src="Зображення/герб.png" alt="Seal" class="logo-seal">
+            <div class="brand-text">
+                <h1>Канцелярія Князя</h1>
+                <p style="font-size: 0.7rem; text-transform: uppercase; color: #666;">Північне Подв'язново</p>
+            </div>
+        </a>
+        <button class="menu-btn" onclick="history.back()">
+            ← НАЗАД
+        </button>
+    </header>
+
+    <main>
+        <section class="chancellor-hero">
+            <div class="hero-content">
+                <h1>Джонатан Хартвел</h1>
+                <p><strong>2-й Канцлер в історії Князівства</strong></p>
+                <p>Обраний на перших Демократичних виборах. Представник Демократичної партії Північного Подв'язнова (ДПНП).</p>
+                <div class="quote">
+                    «Я сподіваюся, що Північне Подв'язново виросте у сильну та процвітаючу державу, де закон і воля народу є найвищою цінністю.»
+                </div>
+            </div>
+        </section>
+
+        <section class="description-block">
+            <h2 class="chancellor-name">Місія та Бачення</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #555;">
+                Джонатан Хартвел поєднує ясний розум, стратегічне бачення та відданість принципам справедливості. Під його керівництвом уряд фокусується на зміцненні інститутів демократії та прозорості державного управління.
+            </p>
+
+            <div class="party-box">
+                <div class="party-logo">DPNP</div>
+                <h3>Демократична партія</h3>
+                <p style="margin-top: 10px; font-weight: 500;">Платформа свободи, рівності та федералізму.</p>
+                
+                <ul class="beliefs-list">
+                    <li><strong>Сильний федералізм:</strong> Право кожного регіону брати участь у законотворчості.</li>
+                    <li><strong>Прозорість:</strong> Влада підконтрольна суспільству через відкриті реєстри.</li>
+                    <li><strong>Захист прав:</strong> Непорушність свободи слова та приватного життя.</li>
+                    <li><strong>Прогрес:</strong> Пріоритет інвестицій в освіту та цифрову інфраструктуру.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="decrees-section">
+            <h2 class="section-title">Офіційні укази</h2>
+            <div class="decree-grid" id="decree-container">
+                <div class="decree-thumb" onclick="openDecree(101)">
+                    <img src="https://via.placeholder.com/200x280?text=Указ+№01" alt="">
+                    <span>Указ №01/2025</span>
+                </div>
+                <div class="decree-thumb" onclick="openDecree(102)">
+                    <img src="https://via.placeholder.com/200x280?text=Указ+№02" alt="">
+                    <span>Указ №02/2025</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Канцелярія Канцлера Північного Подв'язнова. Офіційний ресурс.</p>
+    </footer>
+
+    <div id="newsModal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-window" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modal-body"></div>
         </div>
     </div>
-</div>
 
-<header>
-    <a href="index.html" class="header-left">
-        <div class="logo-box"><img src="Зображення/герб.png" alt="Герб"></div>
-        <div class="header-title">Канцелярія Князя <br><span>Північне Подв'язново</span></div>
-    </a>
-    <button class="menu-btn" onclick="toggleMenu()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <span style="margin-left:10px">МЕНЮ</span>
-    </button>
-</header>
+    <script>
+        // Глобальна змінна для збереження завантажених указів
+window.chancellorDecrees = [];
 
-<main>
-    <section class="chancellor-hero">
-        <div class="hero-content">
-            <h1>Я — Джонатан Хартвел</h1>
-            <p>
-                Канцлер Північного Подв'язнова,<br>
-                обраний на перших Демократичних виборах,<br>
-                2-й Канцлер в історії.
-            </p>
-            <p>
-                Я представляю Демократичну партію і прагну
-                служити народу Північного Подв'язнова.
-            </p>
-            <p class="quote">
-                Я сподіваюся, що Північне Подв'язново<br>
-                виросте у сильну та процвітаючу державу.
-            </p>
-        </div>
-    </section>
-
-    <section class="description-block">
-        <h2 class="chancellor-name">Канцлер Джонатан Хартвел</h2>
-        <p class="chancellor-intro">
-            Його обрано першим демократичним голосуванням в історії князівства. Він поєднує ясний розум, стратегічне бачення та відданість принципам справедливості та прогресу, щоб вести Північне Підв'язново до сильного та процвітаючого майбутнього.
-        </p>
-
-        <div class="party-box">
-            <div class="party-logo">DPNP</div>
-            <p class="party-title"><strong>Демократична партія</strong> — Демократична партія Північного Підв'язнова будується на міцних засадах свободи, рівності та громадянської участі, натхненних традиціями прогресивної демократії.</p>
-            
-            <h3 style="text-transform: uppercase; color: var(--party-purple);">Ми віримо у:</h3>
-            <ul class="beliefs-list">
-                <li>Сильний федералізм, де кожен регіон князівства має право голосу та бере участь у формуванні законів;</li>
-                <li>Прозоре управління, відкрите для громадян та підконтрольне суспільству;</li>
-                <li>Захист прав особистості, повага до свободи слова та свободи совісті;</li>
-                <li>Прогресивні реформування, спрямовані на розвиток освіти, науки, інфраструктури та економіки;</li>
-                <li>Відповідальне лідерство, де влада служить народу, а не інтересам окремих осіб.</li>
-            </ul>
-            <p style="margin-top: 30px; font-style: italic;">
-                Демократична партія прагне поєднати кращі традиції федералізму та самоврядування із сучасними підходами до державного управління, щоб Північне Підв'язново стало сильною, справедливою та процвітаючою країною.
-            </p>
-        </div>
-    </section>
-
-    <section class="decrees-section">
-        <h2>Укази Канцлера:</h2>
-        <div class="decree-grid">
-            <div class="decree-thumb">
-                <img src="https://via.placeholder.com/200x280?text=Указ+1" alt="Указ">
-                <span>Указ №01/2025</span>
+// Функція для завантаження даних з зовнішнього JSON файлу
+async function loadChancellorContent() {
+    try {
+        const response = await fetch('kantsler.json');
+        if (!response.ok) throw new Error('Файл kantsler.json не знайдено');
+        
+        window.chancellorDecrees = await response.json();
+        
+        const container = document.getElementById('decree-container');
+        
+        // Генерація карток указів
+        container.innerHTML = window.chancellorDecrees.map(d => `
+            <div class="decree-thumb" onclick="openDecree(${d.id})">
+                <img src="https://via.placeholder.com/200x280/002395/ffffff?text=Указ+№${d.number.split('/')[0]}" alt="Документ">
+                <span>Указ №${d.number}</span>
             </div>
-            <div class="decree-thumb">
-                <img src="https://via.placeholder.com/200x280?text=Указ+2" alt="Указ">
-                <span>Указ №02/2025</span>
-            </div>
-            <div class="decree-thumb">
-                <img src="https://via.placeholder.com/200x280?text=Указ+3" alt="Указ">
-                <span>Указ №03/2025</span>
-            </div>
-            <div class="decree-thumb">
-                <img src="https://via.placeholder.com/200x280?text=Указ+4" alt="Указ">
-                <span>Указ №04/2025</span>
-            </div>
-        </div>
-    </section>
-</main>
+        `).join('');
 
-<footer>
-    <p>&copy; 2026 Канцелярія Канцлера Північного Подв'язнова. Всі права захищені.</p>
-</footer>
-
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById('menuOverlay');
-        const isVisible = menu.style.display === 'block';
-        menu.style.display = isVisible ? 'none' : 'block';
-        document.body.style.overflow = isVisible ? 'auto' : 'hidden';
+    } catch (e) {
+        console.error("Помилка завантаження указів канцлера:", e);
+        document.getElementById('decree-container').innerHTML = "<p>Не вдалося завантажити перелік указів.</p>";
     }
-</script>
+}
 
+// Функція для відкриття модального вікна
+function openDecree(id) {
+    const decree = window.chancellorDecrees.find(d => d.id === id);
+    if (!decree) return;
+
+    const modal = document.getElementById('newsModal');
+    const content = document.getElementById('modal-body');
+
+    content.innerHTML = `
+        <span style="color: var(--color-accent); font-weight: 700; text-transform: uppercase;">Офіційний указ Канцлера №${decree.number}</span>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; margin: 15px 0;">${decree.title}</h2>
+        <p style="color: #666;">Дата видання: ${decree.date}</p>
+        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+        <div style="font-family: 'Times New Roman', serif; font-size: 1.2rem; line-height: 1.8; white-space: pre-wrap;">${decree.fullText}</div>
+    `;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('newsModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Закриття клавішею Esc
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+});
+
+// Запуск завантаження при завантаженні сторінки
+window.onload = loadChancellorContent;
+    </script>
 </body>
 </html>
